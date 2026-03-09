@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────────────────────
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum FitnessGoal {
+  LOSE_WEIGHT
+  BUILD_MUSCLE
+  STAY_FIT
+  INCREASE_STRENGTH
+  IMPROVE_ENDURANCE
+}
+
+// ─────────────────────────────────────────────────────────────
+// USER  (id = Supabase Auth UID)
+// ─────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id                    // Supabase Auth user ID
+  email         String    @unique
+  displayName   String?
+  avatarUrl     String?
+  weightKg      Float?
+  heightCm      Float?
+  fitnessGoal   FitnessGoal?
+
+  // Gamification
+  currentStreak Int       @default(0)
+  longestStreak Int       @default(0)
+  lastWorkoutAt DateTime?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  workoutSessions  WorkoutSession[]
+  favoriteExercises FavoriteExercise[]
+
+  @@map("users")
+}
+
+// ─────────────────────────────────────────────────────────────
+// WORKOUT SESSION
+// ─────────────────────────────────────────────────────────────
+
+model WorkoutSession {
+  id              String   @id @default(uuid())
+  userId          String
+  exercisesCount  Int      @default(0)
+  exerciseNames   String[] @default([])
+  durationMinutes Int      @default(0)
+  notes           String?  @db.Text
+  completedAt     DateTime @default(now())
+  createdAt       DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, completedAt])
+  @@map("workout_sessions")
+}
+
+// ─────────────────────────────────────────────────────────────
+// FAVORITE EXERCISE
+// ─────────────────────────────────────────────────────────────
+
+model FavoriteExercise {
+  id           String   @id @default(uuid())
+  userId       String
+  exerciseId   String                     // ExerciseDB exercise ID
+  exerciseName String
+  imageUrl     String?
+  bodyPart     String?
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, exerciseId])
+  @@index([userId])
+  @@map("favorite_exercises")
+}
+
+// ─────────────────────────────────────────────────────────────
+// REFERENCE DATA  (seeded)
+// ─────────────────────────────────────────────────────────────
+
+model Equipment {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  iconUrl   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  exercises Exercise[] @relation("ExerciseEquipment")
+
+  @@map("equipment")
+}
+
+model Muscle {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  group     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  primaryExercises   Exercise[] @relation("PrimaryMuscles")
+  secondaryExercises Exercise[] @relation("SecondaryMuscles")
+
+  @@map("muscles")
+}
+
+model Exercise {
+  id           String     @id @default(uuid())
+  name         String
+  instructions String?    @db.Text
+  videoUrl     String?
+  imageUrl     String?
+  difficulty   Difficulty @default(BEGINNER)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  equipment        Equipment[] @relation("ExerciseEquipment")
+  primaryMuscles   Muscle[]    @relation("PrimaryMuscles")
+  secondaryMuscles Muscle[]    @relation("SecondaryMuscles")
+
+  @@map("exercises")
+}

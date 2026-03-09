@@ -1,0 +1,14 @@
+{
+  "name": "workoutnow",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm start",
+    "db:push": "cd frontend && npx prisma db push",
+    "db:generate": "cd frontend && npx prisma generate",
+    "db:studio": "cd frontend && npx prisma studio",
+    "lint": "cd frontend && npm run lint"
+  }
+}
