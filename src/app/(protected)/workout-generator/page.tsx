@@ -118,16 +118,16 @@ export default function WorkoutGeneratorPage() {
     <div>
       {/* title */}
       <div className="mb-6">
-        <h1 className="text-3xl font-extrabold text-slate-900">
+        <h1 className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
           Workout <span className="text-primary">Generator</span>
         </h1>
-        <p className="mt-1 text-slate-500">
+        <p className="mt-1 text-sm text-slate-500 sm:text-base">
           Customize your perfect workout in 3 steps
         </p>
       </div>
 
       {/* stepper */}
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-6 flex items-center justify-between sm:mb-8">
         {steps.map((label, i) => {
           const done = i < currentStep;
           const active = i === currentStep;
@@ -152,7 +152,7 @@ export default function WorkoutGeneratorPage() {
                   )}
                 </div>
                 <span
-                  className={`text-xs font-medium ${active ? "text-primary" : "text-slate-400"}`}
+                  className={`hidden text-xs font-medium sm:block ${active ? "text-primary" : "text-slate-400"}`}
                 >
                   {label}
                 </span>
@@ -170,10 +170,10 @@ export default function WorkoutGeneratorPage() {
       {/* ── Step 0: Equipment ─────────────────────── */}
       {currentStep === 0 && (
         <div className="animate-fadeUp">
-          <h2 className="mb-1 text-2xl font-extrabold text-slate-900">
+          <h2 className="mb-1 text-xl font-extrabold text-slate-900 sm:text-2xl">
             What equipment do you have?
           </h2>
-          <p className="mb-6 text-slate-500">
+          <p className="mb-4 text-sm text-slate-500 sm:mb-6 sm:text-base">
             Select all that apply to help us customize your plan.
           </p>
 
@@ -221,10 +221,10 @@ export default function WorkoutGeneratorPage() {
       {/* ── Step 1: Muscles ──────────────────────── */}
       {currentStep === 1 && (
         <div className="animate-fadeUp">
-          <h2 className="mb-1 text-2xl font-extrabold text-slate-900">
+          <h2 className="mb-1 text-xl font-extrabold text-slate-900 sm:text-2xl">
             Which muscles do you want to target?
           </h2>
-          <p className="mb-6 text-slate-500">
+          <p className="mb-4 text-sm text-slate-500 sm:mb-6 sm:text-base">
             Select all that apply to customize your workout plan.
           </p>
 

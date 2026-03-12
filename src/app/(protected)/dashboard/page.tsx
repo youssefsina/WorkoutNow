@@ -62,12 +62,12 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6">
       {/* ── Hero ────────────────────────────────── */}
-      <section className="relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-6 shadow-sm md:p-8">
+      <section className="relative overflow-hidden rounded-2xl border border-slate-100 bg-white p-4 shadow-sm sm:p-6 md:p-8">
         <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
 
         <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div className="max-w-xl">
-            <h1 className="mb-2 text-2xl font-bold text-slate-900 md:text-3xl">
+            <h1 className="mb-2 text-xl font-bold text-slate-900 sm:text-2xl md:text-3xl">
               Welcome back, {displayName}&nbsp;👋
             </h1>
             <p className="mb-5 text-slate-500">
@@ -106,7 +106,7 @@ export default function DashboardPage() {
       </section>
 
       {/* ── Stat Cards ──────────────────────────── */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {loading ? (
           <>
             <Skeleton className="h-24" />
@@ -116,49 +116,49 @@ export default function DashboardPage() {
         ) : (
           <>
             {/* Total Workouts */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-100 bg-white p-5 shadow-sm transition hover:border-primary/30">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                <span className="material-symbols-outlined text-3xl text-primary">
+            <div className="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-4 shadow-sm transition hover:border-primary/30 sm:gap-4 sm:p-5">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 sm:h-14 sm:w-14">
+                <span className="material-symbols-outlined text-2xl text-primary sm:text-3xl">
                   calendar_today
                 </span>
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-500">
+                <p className="text-xs font-medium text-slate-500 sm:text-sm">
                   Total Workouts
                 </p>
-                <p className="text-3xl font-bold text-slate-900">
+                <p className="text-2xl font-bold text-slate-900 sm:text-3xl">
                   {stats?.totalWorkouts ?? 0}
                 </p>
               </div>
             </div>
 
             {/* This Week */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-100 bg-white p-5 shadow-sm transition hover:border-green-300">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-green-50">
-                <span className="material-symbols-outlined text-3xl text-green-600">
+            <div className="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-4 shadow-sm transition hover:border-green-300 sm:gap-4 sm:p-5">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-50 sm:h-14 sm:w-14">
+                <span className="material-symbols-outlined text-2xl text-green-600 sm:text-3xl">
                   trending_up
                 </span>
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-500">This Week</p>
-                <p className="text-3xl font-bold text-slate-900">
+                <p className="text-xs font-medium text-slate-500 sm:text-sm">This Week</p>
+                <p className="text-2xl font-bold text-slate-900 sm:text-3xl">
                   {weeklyWorkouts}
                 </p>
               </div>
             </div>
 
             {/* Monthly Hours */}
-            <div className="flex items-center gap-4 rounded-xl border border-slate-100 bg-white p-5 shadow-sm transition hover:border-violet-300">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-violet-50">
-                <span className="material-symbols-outlined text-3xl text-violet-600">
+            <div className="flex items-center gap-3 rounded-xl border border-slate-100 bg-white p-4 shadow-sm transition hover:border-violet-300 sm:gap-4 sm:p-5">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-violet-50 sm:h-14 sm:w-14">
+                <span className="material-symbols-outlined text-2xl text-violet-600 sm:text-3xl">
                   schedule
                 </span>
               </div>
               <div>
-                <p className="text-sm font-medium text-slate-500">
+                <p className="text-xs font-medium text-slate-500 sm:text-sm">
                   Monthly Hours
                 </p>
-                <p className="text-3xl font-bold text-slate-900">
+                <p className="text-2xl font-bold text-slate-900 sm:text-3xl">
                   {monthlyHours}h
                 </p>
               </div>

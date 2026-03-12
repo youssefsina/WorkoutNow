@@ -32,9 +32,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen">
       <Sidebar />
-      <main className="min-h-screen flex-1 bg-[#f9fafb] pb-20 lg:ml-[260px] lg:pb-4">
+      <main className="min-h-screen flex-1 bg-[#f9fafb] pb-24 lg:ml-[260px] lg:pb-4">
         <Header />
-        <div className="mx-auto w-full max-w-7xl p-4 sm:p-6 md:p-8">
+        <div className="animate-fadeUp mx-auto w-full max-w-7xl px-3 py-4 sm:p-6 md:p-8">
           {children}
         </div>
       </main>
