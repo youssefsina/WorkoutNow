@@ -21,6 +21,7 @@ enum FitnessGoal {
   LOSE_WEIGHT
   BUILD_MUSCLE
   STAY_FIT
+  GET_FIT
   INCREASE_STRENGTH
   IMPROVE_ENDURANCE
 }
@@ -67,7 +68,8 @@ model WorkoutSession {
   completedAt     DateTime @default(now())
   createdAt       DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionExercises SessionExercise[]
 
   @@index([userId, completedAt])
   @@map("workout_sessions")
@@ -85,12 +87,35 @@ model FavoriteExercise {
   imageUrl     String?
   bodyPart     String?
   createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId, exerciseId])
   @@index([userId])
+  @@index([userId, createdAt(sort: Desc)])
   @@map("favorite_exercises")
+}
+
+// ─────────────────────────────────────────────────────────────
+// SESSION EXERCISES
+// ─────────────────────────────────────────────────────────────
+
+model SessionExercise {
+  id           String         @id @default(uuid())
+  sessionId    String
+  exerciseId   String                              // ExerciseDB string ID
+  exerciseName String
+  sets         Int?
+  reps         String?                             // e.g. "10-12" or "AMRAP"
+  restSeconds  Int?
+  imageUrl     String?
+  createdAt    DateTime       @default(now())
+
+  session WorkoutSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId])
+  @@map("session_exercises")
 }
 
 // ─────────────────────────────────────────────────────────────
