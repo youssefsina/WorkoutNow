@@ -1,6 +1,8 @@
 @echo off
 title WorkoutNow - Development Manager
 color 0B
+setlocal
+pushd "%~dp0"
 
 :MENU
 cls
@@ -8,13 +10,13 @@ echo ========================================
 echo     WORKOUTNOW - DEVELOPMENT MENU
 echo ========================================
 echo.
-echo [1] Start Backend Server (Port 4000)
-echo [2] Start Frontend Server (Port 3001)
-echo [3] Start Both Servers
+echo [1] Start Main App (Port 3000)
+echo [2] Start Landing Page (Port 3001)
+echo [3] Start Both
 echo [4] Kill All Node Processes
-echo [5] Install Dependencies (Backend + Frontend)
-echo [6] Install Backend Dependencies Only
-echo [7] Install Frontend Dependencies Only
+echo [5] Install Dependencies (Main + Landing)
+echo [6] Install Main App Dependencies Only
+echo [7] Install Landing Dependencies Only
 echo [8] Generate Prisma Client
 echo [9] Run Database Migrations
 echo [0] Exit
@@ -37,13 +39,11 @@ goto MENU
 :BACKEND
 cls
 echo ========================================
-echo     Starting Backend Server...
+echo     Starting Main App...
 echo ========================================
-cd backend
-start "Backend Server (Port 4000)" cmd /k "npm run dev"
-cd ..
+start "WorkoutNow App (Port 3000)" cmd /k "npm run dev"
 echo.
-echo Backend server started on http://localhost:4000
+echo Main app started on http://localhost:3000
 echo.
 pause
 goto MENU
@@ -51,13 +51,13 @@ goto MENU
 :FRONTEND
 cls
 echo ========================================
-echo     Starting Frontend Server...
+echo     Starting Landing Page...
 echo ========================================
-cd frontend
-start "Frontend Server (Port 3001)" cmd /k "npm run dev"
-cd ..
+pushd landing
+start "Landing Page (Port 3001)" cmd /k "npm run dev"
+popd
 echo.
-echo Frontend server started on http://localhost:3001
+echo Landing page started on http://localhost:3001
 echo Open your browser to http://localhost:3001
 echo.
 pause
@@ -66,20 +66,18 @@ goto MENU
 :BOTH
 cls
 echo ========================================
-echo     Starting Both Servers...
+echo     Starting Main App + Landing...
 echo ========================================
-cd backend
-start "Backend Server (Port 4000)" cmd /k "npm run dev"
-cd ..
+start "WorkoutNow App (Port 3000)" cmd /k "npm run dev"
 timeout /t 2 /nobreak >nul
-cd frontend
-start "Frontend Server (Port 3001)" cmd /k "npm run dev"
-cd ..
+pushd landing
+start "Landing Page (Port 3001)" cmd /k "npm run dev"
+popd
 echo.
 echo ========================================
-echo Both servers started!
-echo Backend:  http://localhost:4000
-echo Frontend: http://localhost:3001
+echo Both started!
+echo Main App: http://localhost:3000
+echo Landing:  http://localhost:3001
 echo ========================================
 echo.
 pause
@@ -106,15 +104,13 @@ echo ========================================
 echo     Installing All Dependencies...
 echo ========================================
 echo.
-echo Installing Backend Dependencies...
-cd backend
+echo Installing Main App Dependencies...
 call npm install
-cd ..
 echo.
-echo Installing Frontend Dependencies...
-cd frontend
+echo Installing Landing Dependencies...
+pushd landing
 call npm install
-cd ..
+popd
 echo.
 echo ========================================
 echo All dependencies installed!
@@ -125,26 +121,24 @@ goto MENU
 :INSTALL_BACKEND
 cls
 echo ========================================
-echo     Installing Backend Dependencies...
+echo     Installing Main App Dependencies...
 echo ========================================
-cd backend
 call npm install
-cd ..
 echo.
-echo Backend dependencies installed!
+echo Main app dependencies installed!
 pause
 goto MENU
 
 :INSTALL_FRONTEND
 cls
 echo ========================================
-echo     Installing Frontend Dependencies...
+echo     Installing Landing Dependencies...
 echo ========================================
-cd frontend
+pushd landing
 call npm install
-cd ..
+popd
 echo.
-echo Frontend dependencies installed!
+echo Landing dependencies installed!
 pause
 goto MENU
 
@@ -153,9 +147,7 @@ cls
 echo ========================================
 echo     Generating Prisma Client...
 echo ========================================
-cd backend
 call npx prisma generate
-cd ..
 echo.
 echo Prisma client generated!
 pause
@@ -168,12 +160,10 @@ echo     Running Database Migrations...
 echo ========================================
 echo.
 echo NOTE: This requires a PostgreSQL database connection.
-echo Check your backend/.env file for DATABASE_URL
+echo Check your .env.local file for DATABASE_URL
 echo.
 pause
-cd backend
 call npx prisma migrate dev
-cd ..
 echo.
 echo Database migrations completed!
 pause

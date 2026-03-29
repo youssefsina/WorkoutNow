@@ -5,8 +5,9 @@
 ### 📦 Available Batch Files
 
 1. **start.bat** - Full menu with all options
-2. **quick-start.bat** - Instantly start both servers
-3. **stop-servers.bat** - Stop all running servers
+2. **quick-start.bat** - Instantly start main app + landing
+3. **run-all.bat** - Installs deps if needed, then starts main app + landing
+4. **stop-servers.bat** - Stop all running servers
 
 ---
 
@@ -16,22 +17,25 @@
 Double-click **`start.bat`** to open the interactive menu:
 
 ```
-[1] Start Backend Server (Port 4000)
-[2] Start Frontend Server (Port 3001)
-[3] Start Both Servers
+[1] Start Main App (Port 3000)
+[2] Start Landing Page (Port 3001)
+[3] Start Both
 [4] Kill All Node Processes
-[5] Install Dependencies (Backend + Frontend)
-[6] Install Backend Dependencies Only
-[7] Install Frontend Dependencies Only
+[5] Install Dependencies (Main + Landing)
+[6] Install Main App Dependencies Only
+[7] Install Landing Dependencies Only
 [8] Generate Prisma Client
 [9] Run Database Migrations
 [0] Exit
 ```
 
 ### Option 2: Quick Start
-Double-click **`quick-start.bat`** to immediately start both servers.
-- Backend: http://localhost:4000
-- Frontend: http://localhost:3001
+Double-click **`quick-start.bat`** to immediately start main app + landing.
+- Main App: http://localhost:3000
+- Landing: http://localhost:3001
+
+### Option 3: Run All (Auto Install)
+Double-click **`run-all.bat`** to install dependencies if missing, then start main app + landing.
 
 ### Option 3: Stop Servers
 Double-click **`stop-servers.bat`** to kill all Node.js processes and free up ports.
@@ -40,46 +44,46 @@ Double-click **`stop-servers.bat`** to kill all Node.js processes and free up po
 
 ## 📋 Menu Options Explained
 
-### [1] Start Backend Server
-- Starts Express.js backend on port 4000
+### [1] Start Main App
+- Starts Next.js app on port 3000 (includes API routes)
 - Opens in a new terminal window
-- API endpoints available at http://localhost:4000/api/v1/*
+- App available at http://localhost:3000
 
-### [2] Start Frontend Server
-- Starts Next.js frontend on port 3001
+### [2] Start Landing Page
+- Starts Next.js landing on port 3001
 - Opens in a new terminal window
 - Open browser to http://localhost:3001
 
-### [3] Start Both Servers
-- Starts backend first, waits 2 seconds
-- Then starts frontend
+### [3] Start Both
+- Starts main app first, waits 2 seconds
+- Then starts landing
 - Both open in separate terminal windows
 
 ### [4] Kill All Node Processes
 - Stops all running Node.js processes
-- Frees ports 4000 and 3001
+- Frees ports 3000 and 3001
 - Use this if servers are stuck or you get "port already in use" errors
 
 ### [5] Install Dependencies (Both)
-- Runs `npm install` in backend folder
-- Runs `npm install` in frontend folder
+- Runs `npm install` in project root
+- Runs `npm install` in landing folder
 - Use when first setting up the project
 
-### [6] Install Backend Dependencies Only
-- Runs `npm install` in backend folder only
+### [6] Install Main App Dependencies Only
+- Runs `npm install` in project root only
 
-### [7] Install Frontend Dependencies Only
-- Runs `npm install` in frontend folder only
+### [7] Install Landing Dependencies Only
+- Runs `npm install` in landing folder only
 
 ### [8] Generate Prisma Client
-- Runs `npx prisma generate` in backend
+- Runs `npx prisma generate` in project root
 - Generates TypeScript types from Prisma schema
-- Run this after modifying `backend/prisma/schema.prisma`
+- Run this after modifying `prisma/schema.prisma`
 
 ### [9] Run Database Migrations
-- Runs `npx prisma migrate dev` in backend
+- Runs `npx prisma migrate dev` in project root
 - Applies database schema changes
-- Requires DATABASE_URL in `backend/.env`
+- Requires DATABASE_URL in `.env.local`
 
 ---
 
@@ -89,8 +93,8 @@ Double-click **`stop-servers.bat`** to kill all Node.js processes and free up po
 2. Choose option **[5]** to install all dependencies
 3. Wait for installation to complete
 4. Choose option **[8]** to generate Prisma client
-5. Choose option **[3]** to start both servers
-6. Open browser to http://localhost:3001
+5. Choose option **[3]** to start both
+6. Open browser to http://localhost:3000
 
 ---
 
@@ -128,7 +132,7 @@ Double-click **`stop-servers.bat`** to kill all Node.js processes and free up po
 ### Daily Development
 1. Double-click **`quick-start.bat`**
 2. Wait for servers to start
-3. Open http://localhost:3001
+3. Open http://localhost:3000
 
 ### Clean Start
 1. Run **`stop-servers.bat`**

@@ -1,110 +1,79 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
-import { useAuthStore } from "@/store/useAuthStore";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const NAV_ITEMS = [
-  { label: "Dashboard", href: "/dashboard", icon: "dashboard", color: "text-blue-500" },
-  { label: "Generator", href: "/workout-generator", icon: "auto_awesome", color: "text-amber-500" },
-  { label: "Favorites", href: "/favorites", icon: "favorite", color: "text-rose-500" },
-  { label: "History", href: "/history", icon: "history", color: "text-indigo-500" },
-  { label: "Profile", href: "/profile", icon: "person", color: "text-emerald-500" },
+  { label: "Dashboard", href: "/dashboard", icon: "dashboard" },
+  { label: "Generator", href: "/workout-generator", icon: "auto_awesome" },
+  { label: "Favorites", href: "/favorites", icon: "favorite" },
+  { label: "History", href: "/history", icon: "history" },
+  { label: "Profile", href: "/profile", icon: "person" },
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const router = useRouter();
-  const user = useAuthStore((s) => s.user);
-  const signOut = useAuthStore((s) => s.signOut);
-
-  const handleLogout = async () => {
-    await signOut();
-    router.push("/login");
-  };
-
-  const displayName =
-    user?.user_metadata?.display_name || user?.email?.split("@")[0] || "User";
 
   return (
-    <aside className="fixed inset-y-0 left-0 z-50 hidden w-[260px] flex-col bg-white lg:flex">
-      {/* Decorative top gradient line */}
-      <div className="h-1 w-full bg-gradient-to-r from-primary via-indigo-500 to-violet-500" />
+    <aside className="fixed inset-y-0 left-0 z-50 hidden flex-col border-r border-border bg-card py-5 lg:flex w-[72px] hover:w-[220px] transition-all duration-300 ease-in-out overflow-hidden group/sidebar">
+      {/* Vertical gradient accent */}
+      <div className="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-primary via-indigo-500 to-violet-500 opacity-40" />
 
       {/* Logo */}
-      <div className="flex items-center gap-3 px-6 py-5">
-        <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-indigo-600 text-white shadow-lg shadow-primary/30">
-          <span className="material-symbols-outlined filled text-xl">bolt</span>
-        </div>
-        <div>
-          <h1 className="text-lg font-extrabold tracking-tight text-slate-900">
-            Workout<span className="text-primary">Now</span>
-          </h1>
-          <p className="text-[10px] font-medium uppercase tracking-widest text-slate-400">Fitness Tracker</p>
-        </div>
-      </div>
+      <Link
+        href="/dashboard"
+        title="WorkoutNow"
+        className="mb-5 mx-auto ml-3.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/30 transition hover:brightness-110 group-hover/sidebar:ml-5 group-hover/sidebar:w-auto group-hover/sidebar:px-4 group-hover/sidebar:justify-start group-hover/sidebar:gap-3"
+      >
+        <span className="material-symbols-outlined filled text-xl shrink-0">bolt</span>
+        <span className="font-bold tracking-wide hidden opacity-0 group-hover/sidebar:inline-block group-hover/sidebar:opacity-100 transition-opacity whitespace-nowrap">WorkoutNow</span>
+      </Link>
 
-      {/* Divider */}
-      <div className="mx-5 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="mx-auto mb-4 h-px w-9 bg-border opacity-60 group-hover/sidebar:w-[180px] transition-all" />
 
-      {/* Navigation */}
-      <nav className="flex-1 space-y-1 px-3 py-4">
-        <p className="mb-2 px-3 text-[10px] font-bold uppercase tracking-widest text-slate-400">Menu</p>
+      {/* Nav links */}
+      <nav className="flex flex-col gap-1 px-3 w-full">
         {NAV_ITEMS.map((item) => {
           const isActive =
             pathname === item.href || pathname.startsWith(item.href + "/");
+
           return (
-            <button
+            <Link
               key={item.href}
-              onClick={() => router.push(item.href)}
-              className={`group relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-all duration-200 ${
+              href={item.href}
+              title={item.label}
+              className={`group relative flex h-11 w-11 group-hover/sidebar:w-full items-center justify-center group-hover/sidebar:justify-start group-hover/sidebar:px-3 mx-auto group-hover/sidebar:mx-0 rounded-xl transition-all duration-200 ${
                 isActive
-                  ? "bg-primary/10 font-semibold text-primary shadow-sm"
-                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-900"
+                  ? "bg-primary/10 text-primary font-medium"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
               }`}
             >
-              {/* Active indicator */}
+              {/* Active indicator bar */}
               {isActive && (
-                <div className="absolute left-0 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r-full bg-primary" />
+                <span className="absolute left-0 h-5 w-0.5 rounded-r-full bg-primary" />
               )}
-              <div className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${
-                isActive ? "bg-primary text-white shadow-md shadow-primary/30" : `bg-slate-100 ${item.color} group-hover:bg-slate-200`
-              }`}>
-                <span className={`material-symbols-outlined text-[18px] ${isActive ? "filled" : ""}`}>
-                  {item.icon}
-                </span>
-              </div>
-              <span className="text-sm">{item.label}</span>
-              {isActive && (
-                <div className="ml-auto h-1.5 w-1.5 rounded-full bg-primary" />
-              )}
-            </button>
+
+              <span
+                className={`material-symbols-outlined text-xl shrink-0 transition-transform duration-200 ${
+                  isActive ? "filled scale-110" : "group-hover:scale-110"
+                }`}
+              >
+                {item.icon}
+              </span>
+
+              {/* Text label */}
+              <span className="ml-3 hidden opacity-0 whitespace-nowrap transition-opacity group-hover/sidebar:inline-block group-hover/sidebar:opacity-100">
+                {item.label}
+              </span>
+            </Link>
           );
         })}
       </nav>
 
-      {/* Divider */}
-      <div className="mx-5 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-      {/* User section */}
-      <div className="p-4">
-        <div className="rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 p-3">
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-indigo-600 text-sm font-bold text-white shadow-md shadow-primary/20">
-              {displayName.charAt(0).toUpperCase()}
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-bold text-slate-900">{displayName}</p>
-              <p className="truncate text-[11px] text-slate-400">{user?.email || ""}</p>
-            </div>
-          </div>
-          <button
-            onClick={handleLogout}
-            className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-500 transition hover:border-red-200 hover:bg-red-50 hover:text-red-500"
-          >
-            <span className="material-symbols-outlined text-sm">logout</span>
-            Sign Out
-          </button>
-        </div>
+      {/* Bottom: theme toggle */}
+      <div className="mt-auto px-4 flex justify-center group-hover/sidebar:justify-start">
+        <ThemeToggle className="h-9 w-9 group-hover/sidebar:w-full group-hover/sidebar:justify-start group-hover/sidebar:px-3 rounded-xl border-border/60 bg-muted text-muted-foreground hover:bg-accent hover:text-foreground" />
       </div>
     </aside>
   );

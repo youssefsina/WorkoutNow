@@ -27,11 +27,6 @@
     --input: 240 5.9% 90%;
     --ring: 217.2 91.2% 59.8%;
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 96% 56%;
-    --chart-5: 27 87% 67%;
   }
 
   .dark {
@@ -54,11 +49,6 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 217.2 91.2% 59.8%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
 }
 
@@ -66,7 +56,7 @@
   * {
     border-color: hsl(var(--border));
   }
-  
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
@@ -119,30 +109,25 @@ html, body {
 }
 
 @keyframes fade-up {
-  from { 
-    opacity: 0; 
-    transform: translateY(10px); 
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes scale-in {
-  from { 
-    opacity: 0; 
-    transform: scale(0.95); 
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
-  to { 
-    opacity: 1; 
-    transform: scale(1); 
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
 }
 
 .animate-fade-in {
@@ -165,22 +150,9 @@ html, body {
   border: 1px solid hsl(var(--border) / 0.5);
 }
 
-/* Utility classes for shadcn-like components */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-  
-  .ring-offset-background {
-    --tw-ring-offset-color: hsl(var(--background));
-  }
-  
-  .focus-visible {
-    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
-  }
-  
-  .disabled {
-    @apply pointer-events-none opacity-50;
   }
 }
 
@@ -189,23 +161,4 @@ html, body {
   .safe-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
-}
-
-/* Focus visible outline */
-.focus-visible\:outline-none:focus-visible {
-  outline: none;
-}
-
-.focus-visible\:ring-2:focus-visible {
-  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
-}
-
-.focus-visible\:ring-ring:focus-visible {
-  --tw-ring-color: hsl(var(--ring));
-}
-
-.focus-visible\:ring-offset-2:focus-visible {
-  --tw-ring-offset-width: 2px;
 }

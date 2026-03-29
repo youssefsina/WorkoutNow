@@ -54,6 +54,22 @@ export default function ActiveWorkoutPage() {
     };
   }, []);
 
+  useEffect(() => {
+    async function loadFavorites() {
+      try {
+        const res = await workoutAPI.getFavorites();
+        const items = Array.isArray(res.data)
+          ? res.data
+          : ((res.data as { data?: Array<{ exerciseId: string }> }).data ?? []);
+        setFavorites(new Set(items.map((item) => item.exerciseId)));
+      } catch {
+        /* silent */
+      }
+    }
+
+    loadFavorites();
+  }, []);
+
   // Redirect if no exercises
   useEffect(() => {
     if (generatedExercises.length === 0) {
@@ -220,12 +236,17 @@ export default function ActiveWorkoutPage() {
   const toggleFav = async (ex: any) => {
     try {
       const det = detailsCache[ex.id];
-      const imgUrl = det?.videoUrl || det?.imageUrl || ex.videoUrl || ex.imageUrl || "";
+      const imgUrl = det?.imageUrl || ex.imageUrl || "";
+      const bodyPart =
+        det?.target ||
+        ex.muscles?.[0]?.name ||
+        ex.targetMuscles?.[0] ||
+        "";
       await workoutAPI.toggleFavorite(
         ex.id,
         ex.name,
         imgUrl,
-        ex.muscles?.[0]?.name || ex.targetMuscles?.[0] || "",
+        bodyPart,
       );
       setFavorites((prev) => {
         const next = new Set(prev);

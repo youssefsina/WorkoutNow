@@ -6,6 +6,9 @@ import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const LiquidChrome = dynamic(() => import("@/components/ui/LiquidChrome"), { ssr: false });
 
+// Update these URLs to point to your main app in production
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+
 const navLinks = [
   { href: "#features", label: "Features" },
   { href: "#how-it-works", label: "How It Works" },
@@ -77,12 +80,12 @@ export default function HomePage() {
       <div className="relative z-10">
         {/* ── Navbar ── */}
         <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <Link href="/" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/10 backdrop-blur-xl">
               <span className="material-symbols-outlined filled text-lg text-white">fitness_center</span>
             </div>
             <span className="text-base font-black tracking-tight">WorkoutNow</span>
-          </Link>
+          </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((item) => (
@@ -97,19 +100,19 @@ export default function HomePage() {
           </nav>
 
           <div className="flex items-center gap-2.5">
-            <Link
-              href="/login"
+            <a
+              href={`${APP_URL}/login`}
               className="hidden rounded-full border border-white/12 bg-white/[0.05] px-5 py-2 text-sm font-semibold text-white/75 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.09] hover:text-white sm:inline-flex"
             >
               Sign In
-            </Link>
-            <Link
-              href="/signup"
+            </a>
+            <a
+              href={`${APP_URL}/signup`}
               className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-sm font-bold text-[#0b1020] transition hover:bg-[#e8efff]"
             >
               Get Started
               <span className="material-symbols-outlined text-base leading-none">north_east</span>
-            </Link>
+            </a>
             <ThemeToggle className="border-white/12 bg-white/[0.08] text-white shadow-none backdrop-blur-xl hover:bg-white/[0.14] hover:text-white" />
           </div>
         </header>
@@ -144,20 +147,20 @@ export default function HomePage() {
 
                 {/* CTAs */}
                 <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                  <Link
-                    href="/signup"
+                  <a
+                    href={`${APP_URL}/signup`}
                     className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-8 py-3.5 text-base font-bold text-white shadow-[0_16px_40px_rgba(99,102,241,0.35)] transition hover:bg-indigo-400"
                   >
                     Start for Free
                     <span className="material-symbols-outlined text-[1.05rem]">north_east</span>
-                  </Link>
-                  <Link
-                    href="/demo"
+                  </a>
+                  <a
+                    href={`${APP_URL}/demo`}
                     className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/[0.06] px-8 py-3.5 text-base font-semibold text-white/85 backdrop-blur-xl transition hover:border-white/28 hover:bg-white/[0.1]"
                   >
                     <span className="material-symbols-outlined text-[1.05rem]">play_circle</span>
                     Try Demo
-                  </Link>
+                  </a>
                 </div>
 
                 <p className="mt-4 text-xs text-white/36">No credit card. No setup. Just workouts.</p>
@@ -253,19 +256,19 @@ export default function HomePage() {
                     The dashboard shows your current streak, weekly goals, total sessions, and monthly hours — so you always know where you stand.
                   </p>
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Link
-                      href="/signup"
+                    <a
+                      href={`${APP_URL}/signup`}
                       className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-7 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(99,102,241,0.3)] transition hover:bg-indigo-400"
                     >
                       Start Tracking Free
                       <span className="material-symbols-outlined text-base">north_east</span>
-                    </Link>
-                    <Link
-                      href="/login"
+                    </a>
+                    <a
+                      href={`${APP_URL}/login`}
                       className="inline-flex items-center rounded-full border border-white/14 bg-white/[0.05] px-7 py-3 text-sm font-semibold text-white/80 backdrop-blur-xl transition hover:border-white/28 hover:bg-white/[0.09]"
                     >
                       Sign In
-                    </Link>
+                    </a>
                   </div>
                 </div>
 
@@ -304,8 +307,8 @@ export default function HomePage() {
             &copy; {new Date().getFullYear()} — Workout generator &amp; tracker
           </p>
           <div className="flex items-center gap-4">
-            <Link href="/login" className="text-xs text-white/38 hover:text-white/70 transition">Sign In</Link>
-            <Link href="/signup" className="text-xs text-white/38 hover:text-white/70 transition">Sign Up</Link>
+            <a href={`${APP_URL}/login`} className="text-xs text-white/38 hover:text-white/70 transition">Sign In</a>
+            <a href={`${APP_URL}/signup`} className="text-xs text-white/38 hover:text-white/70 transition">Sign Up</a>
           </div>
         </footer>
       </div>

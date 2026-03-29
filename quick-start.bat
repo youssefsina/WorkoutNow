@@ -1,30 +1,30 @@
 @echo off
 title WorkoutNow - Quick Start
 color 0B
+setlocal
+pushd "%~dp0"
 
 echo ========================================
 echo     WORKOUTNOW - QUICK START
 echo ========================================
 echo.
-echo Starting Backend Server (Port 4000)...
-cd backend
-start "Backend Server" cmd /k "npm run dev"
-cd ..
+echo Starting Main App (Port 3000)...
+start "WorkoutNow App" cmd /k "npm run dev"
 
 timeout /t 3 /nobreak >nul
 
-echo Starting Frontend Server (Port 3001)...
-cd frontend
-start "Frontend Server" cmd /k "npm run dev"
-cd ..
+echo Starting Landing Page (Port 3001)...
+pushd landing
+start "Landing Page" cmd /k "npm run dev"
+popd
 
 echo.
 echo ========================================
 echo Both servers are starting!
 echo ========================================
 echo.
-echo Backend:  http://localhost:4000
-echo Frontend: http://localhost:3001
+echo Main App: http://localhost:3000
+echo Landing:  http://localhost:3001
 echo.
 echo Open your browser to: http://localhost:3001
 echo.

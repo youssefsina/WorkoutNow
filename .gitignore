@@ -45,8 +45,35 @@ next-env.d.ts
 
 # prisma
 prisma/*.db
-
-# prisma generated engine
 **/*.dll.node
 **/query_engine-*
 prisma/*.db-journal
+
+# AI agent & IDE tooling folders (not needed in repo)
+.agents/
+.claude/
+.gemini/
+memory/
+
+# Project-specific scratch files
+pencil-new.pen
+skills-lock.json
+
+# Internal docs (developer notes, not for repo)
+ADMIN_LOGIN.md
+API_SETUP_COMPLETE.md
+APP_RUNNING.md
+ARCHITECTURE.md
+BATCH_FILES_GUIDE.md
+CLAUDE.md
+DESIGN_BRIEF.md
+DESIGN_SUMMARY.md
+DISABLE_EMAIL_CONFIRMATION.md
+ENV_SETUP.md
+EXERCISEDB_API.md
+LOGIN_HELP.md
+STATUS.md
+SUPABASE_FIX.md
+
+# Windows batch files (local dev only)
+*.bat

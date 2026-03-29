@@ -37,7 +37,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(t);
-    
+
     if (t === "dark") {
       root.style.setProperty("--background", "0 0% 3.9%");
       root.style.setProperty("--foreground", "0 0% 98%");

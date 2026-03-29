@@ -8,10 +8,32 @@ import { exerciseAPI, workoutAPI } from "@/lib/api";
 import { useWorkoutStore } from "@/store/useWorkoutStore";
 import ExerciseCard, { Exercise } from "@/components/workout/ExerciseCard";
 import ExerciseDetailsModal from "@/components/workout/ExerciseDetailsModal";
+import BodyMap from "@/components/workout/BodyMap";
 
 const steps = ["Equipment", "Muscles", "Workout"];
 
 type OptionItem = string | { id: string; name: string };
+
+// Map equipment IDs to specific Material Symbol icons
+const EQUIPMENT_ICONS: Record<string, string> = {
+  barbell: "fitness_center",
+  dumbbell: "sports_gymnastics",
+  cable: "anchor",
+  body_weight: "accessibility_new",
+  bodyweight: "accessibility_new",
+  machine: "precision_manufacturing",
+  kettlebell: "sports_martial_arts",
+  band: "expand",
+  resistance_band: "expand",
+  ez_barbell: "linear_scale",
+  smith_machine: "straighten",
+  stability_ball: "circle",
+};
+
+function getEquipmentIcon(id: string): string {
+  const normalized = id.toLowerCase().replace(/\s+/g, "_");
+  return EQUIPMENT_ICONS[normalized] ?? "fitness_center";
+}
 
 export default function WorkoutGeneratorPage() {
   const router = useRouter();
@@ -28,12 +50,10 @@ export default function WorkoutGeneratorPage() {
   } = useWorkoutStore();
 
   const [equipmentList, setEquipmentList] = useState<OptionItem[]>([]);
-  const [muscleList, setMuscleList] = useState<OptionItem[]>([]);
+  const [muscleList, setMuscleList] = useState<{ id: string; name: string }[]>([]);
   const [generating, setGenerating] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(
-    null,
-  );
+  const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
 
   const handleViewDetails = (exercise: Exercise) => {
@@ -77,7 +97,11 @@ export default function WorkoutGeneratorPage() {
           exerciseAPI.getMuscles(),
         ]);
         setEquipmentList(eqRes.data || []);
-        setMuscleList(muRes.data || []);
+        setMuscleList(
+          (muRes.data || []).map((m: any) =>
+            typeof m === "string" ? { id: m, name: m } : { id: m.id, name: m.name }
+          )
+        );
       } catch {
         toast.error("Failed to load options");
       } finally {
@@ -116,7 +140,7 @@ export default function WorkoutGeneratorPage() {
 
   return (
     <div>
-      {/* title */}
+      {/* Title */}
       <div className="mb-6">
         <h1 className="text-2xl font-extrabold text-slate-900 sm:text-3xl">
           Workout <span className="text-primary">Generator</span>
@@ -126,7 +150,7 @@ export default function WorkoutGeneratorPage() {
         </p>
       </div>
 
-      {/* stepper */}
+      {/* Stepper */}
       <div className="mb-6 flex items-center justify-between sm:mb-8">
         {steps.map((label, i) => {
           const done = i < currentStep;
@@ -167,7 +191,7 @@ export default function WorkoutGeneratorPage() {
         })}
       </div>
 
-      {/* ── Step 0: Equipment ─────────────────────── */}
+      {/* Step 0: Equipment */}
       {currentStep === 0 && (
         <div className="animate-fadeUp">
           <h2 className="mb-1 text-xl font-extrabold text-slate-900 sm:text-2xl">
@@ -187,6 +211,7 @@ export default function WorkoutGeneratorPage() {
                 const eqId = typeof eq === "string" ? eq : eq.id;
                 const eqName = typeof eq === "string" ? eq : eq.name;
                 const active = selectedEquipment.includes(eqId);
+                const icon = getEquipmentIcon(eqId);
 
                 return (
                   <button
@@ -200,13 +225,15 @@ export default function WorkoutGeneratorPage() {
                     }`}
                   >
                     {active && (
-                      <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs text-white">
-                        ✓
+                      <span className="absolute right-3 top-3 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-white">
+                        <span className="material-symbols-outlined text-sm leading-none">
+                          check
+                        </span>
                       </span>
                     )}
                     <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
                       <span className="material-symbols-outlined text-2xl text-primary">
-                        fitness_center
+                        {icon}
                       </span>
                     </div>
                     <p className="text-sm font-bold text-slate-800">{eqName}</p>
@@ -218,14 +245,14 @@ export default function WorkoutGeneratorPage() {
         </div>
       )}
 
-      {/* ── Step 1: Muscles ──────────────────────── */}
+      {/* Step 1: Muscles — interactive body map */}
       {currentStep === 1 && (
         <div className="animate-fadeUp">
           <h2 className="mb-1 text-xl font-extrabold text-slate-900 sm:text-2xl">
             Which muscles do you want to target?
           </h2>
           <p className="mb-4 text-sm text-slate-500 sm:mb-6 sm:text-base">
-            Select all that apply to customize your workout plan.
+            Click on the body map to select muscle groups.
           </p>
 
           {loading ? (
@@ -233,48 +260,21 @@ export default function WorkoutGeneratorPage() {
               <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-              {muscleList.map((muscle) => {
-                const mId = typeof muscle === "string" ? muscle : muscle.id;
-                const mName = typeof muscle === "string" ? muscle : muscle.name;
-                const active = selectedMuscles.includes(mId);
-
-                return (
-                  <button
-                    key={mId}
-                    type="button"
-                    onClick={() => toggleMuscle(mId)}
-                    className={`relative rounded-xl border-2 p-4 text-left transition hover:-translate-y-0.5 ${
-                      active
-                        ? "border-primary bg-primary/5 shadow-md shadow-primary/10"
-                        : "border-slate-200 bg-white hover:border-primary/30"
-                    }`}
-                  >
-                    {active && (
-                      <span className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs text-white">
-                        ✓
-                      </span>
-                    )}
-                    <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                      <span className="material-symbols-outlined text-2xl text-primary">
-                        accessibility_new
-                      </span>
-                    </div>
-                    <p className="text-sm font-bold text-slate-800">{mName}</p>
-                  </button>
-                );
-              })}
-            </div>
+            <BodyMap
+              muscleList={muscleList}
+              selectedMuscles={selectedMuscles}
+              onToggleMuscle={toggleMuscle}
+            />
           )}
         </div>
       )}
 
-      {/* ── Step 2: Preview ─────────────────────── */}
+      {/* Step 2: Preview */}
       {currentStep === 2 && (
         <div className="animate-fadeUp">
           <div className="mb-1 flex items-center gap-2">
             <span className="material-symbols-outlined text-2xl text-green-500">
-              auto_awesome
+              check_circle
             </span>
             <h2 className="text-xl font-bold text-slate-900">
               Workout Preview
@@ -303,7 +303,7 @@ export default function WorkoutGeneratorPage() {
         </div>
       )}
 
-      {/* ── Navigation Buttons ─────────────────── */}
+      {/* Navigation Buttons */}
       <div className="mt-8 flex items-center gap-3">
         <button
           type="button"
@@ -311,9 +311,7 @@ export default function WorkoutGeneratorPage() {
           onClick={() => currentStep > 0 && prevStep()}
           className="flex items-center gap-1 rounded-lg border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50 disabled:opacity-40"
         >
-          <span className="material-symbols-outlined text-lg">
-            arrow_back
-          </span>
+          <span className="material-symbols-outlined text-lg">arrow_back</span>
           Back
         </button>
 

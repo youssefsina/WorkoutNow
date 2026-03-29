@@ -36,7 +36,10 @@ export default function ExerciseCard({
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+    <div
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border border-slate-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+      onClick={() => onViewDetails(exercise)}
+    >
       {/* image */}
       <div className="relative aspect-[4/3] bg-slate-100">
         {!imageError && exercise.imageUrl ? (
@@ -57,7 +60,7 @@ export default function ExerciseCard({
 
         {onToggleFavorite && (
           <button
-            onClick={() => onToggleFavorite(exercise.id)}
+            onClick={(e) => { e.stopPropagation(); onToggleFavorite(exercise.id); }}
             className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-sm transition hover:bg-white"
           >
             <span
@@ -109,13 +112,10 @@ export default function ExerciseCard({
           </div>
         )}
 
-        <button
-          onClick={() => onViewDetails(exercise)}
-          className="mt-auto flex w-full items-center justify-center gap-1.5 rounded-lg border border-slate-200 py-2 text-sm font-medium text-slate-700 transition hover:border-primary hover:text-primary"
-        >
+        <div className="mt-auto flex items-center justify-center gap-1.5 rounded-lg border border-slate-200 py-2 text-sm font-medium text-slate-500 transition group-hover:border-primary group-hover:text-primary">
           <span className="material-symbols-outlined text-base">info</span>
           View Details
-        </button>
+        </div>
       </div>
     </div>
   );
