@@ -77,3 +77,8 @@ SUPABASE_FIX.md
 
 # Windows batch files (local dev only)
 *.bat
+
+# Supabase SQL files (contain DB structure — keep local only)
+supabase_patches.sql
+supabase_rls.sql
+supabase_schema.sql
