@@ -151,16 +151,18 @@ export default function HomePage() {
                     Start for Free
                     <span className="material-symbols-outlined text-[1.05rem]">north_east</span>
                   </Link>
-                  <Link
-                    href="/demo"
+                  <a
+                    href="https://github.com/youssefsina/WorkoutNow"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/[0.06] px-8 py-3.5 text-base font-semibold text-white/85 backdrop-blur-xl transition hover:border-white/28 hover:bg-white/[0.1]"
                   >
-                    <span className="material-symbols-outlined text-[1.05rem]">play_circle</span>
-                    Try Demo
-                  </Link>
+                    <span className="material-symbols-outlined filled text-[1.05rem]">star</span>
+                    Star on GitHub
+                  </a>
                 </div>
 
-                <p className="mt-4 text-xs text-white/36">No credit card. No setup. Just workouts.</p>
+                <p className="mt-4 text-xs text-white/36">Free and open source.</p>
 
                 {/* Trust strip */}
                 <div className="mt-14 flex w-full max-w-xl items-center justify-center gap-0 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl divide-x divide-white/10">
