@@ -96,13 +96,13 @@ export default function AnimatedMobileNav() {
       {/* Full Screen Menu Overlay */}
       <div
         ref={menuRef}
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-all duration-500 lg:hidden ${
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center transition-opacity duration-500 lg:hidden ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         style={{
           background: isDark 
-            ? "linear-gradient(180deg, #09090b 0%, #18181b 50%, #27272a 100%)"
-            : "linear-gradient(180deg, #fafafa 0%, #f4f4f5 50%, #e4e4e7 100%)",
+            ? "#09090b"
+            : "#f4f4f5",
         }}
       >
         {/* Animated Background Pattern */}
