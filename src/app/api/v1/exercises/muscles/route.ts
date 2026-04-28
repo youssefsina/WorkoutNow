@@ -37,8 +37,9 @@ export async function GET() {
     let mapped: any[];
 
     if (muscles.length > 0) {
+      // Use the lowercase name as ID so mapBodyPartToExerciseDB works correctly
       mapped = muscles.map((m: { id: string; name: string; group: string }) => ({
-        id: m.id,
+        id: m.name.toLowerCase().replace(/\s+/g, "_"),
         name: m.name,
         bodyPart: m.group,
       }));

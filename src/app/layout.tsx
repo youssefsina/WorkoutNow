@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "WorkoutNow | Your Fitness Engine",
   description:
     "Generate custom workout plans tailored to your equipment and goals.",
+  icons: {
+    icon: "/logo.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({

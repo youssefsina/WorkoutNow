@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAuthStore } from "@/store/useAuthStore";
 import Sidebar from "@/components/layout/Sidebar";
 import Header from "@/components/layout/Header";
+import BottomNav from "@/components/layout/BottomNav";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const initialized = useAuthStore((s) => s.initialized);
@@ -30,13 +31,19 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-screen">
+      {/* Desktop sidebar only */}
       <Sidebar />
-      <main className="min-h-screen flex-1 bg-background pb-6 lg:ml-[72px]">
+
+      <main className="min-h-screen flex-1 bg-background lg:ml-[92px]">
         <Header />
-        <div className="animate-fade-up mx-auto w-full max-w-7xl px-3 py-4 sm:p-6 md:p-8">
+        {/* Extra bottom padding on mobile so content clears the bottom nav */}
+        <div className="animate-fade-up mx-auto w-full max-w-7xl px-3 py-4 pb-28 sm:p-6 md:p-8 lg:pb-8">
           {children}
         </div>
       </main>
+
+      {/* Mobile bottom nav — hidden on desktop */}
+      <BottomNav />
     </div>
   );
 }

@@ -46,36 +46,38 @@ export default function ExerciseDetailsModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+        className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-card shadow-2xl border border-border"
         onClick={(e) => e.stopPropagation()}
       >
         {/* header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-6 py-4">
-          <h2 className="text-lg font-bold text-slate-900">{data.name}</h2>
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-card px-6 py-4">
+          <h2 className="text-lg font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            {data.name}
+          </h2>
           <div className="flex items-center gap-1">
             {onToggleFavorite && (
               <button
                 onClick={() => onToggleFavorite(exercise.id)}
-                className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-slate-100"
+                className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-muted"
               >
-                <span className={`material-symbols-outlined ${isFavorite ? "filled text-red-500" : "text-slate-400"}`}>
+                <span className={`material-symbols-outlined ${isFavorite ? "filled text-red-500" : "text-muted-foreground"}`}>
                   favorite
                 </span>
               </button>
             )}
-            <button onClick={onClose} className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-slate-100">
-              <span className="material-symbols-outlined text-slate-500">close</span>
+            <button onClick={onClose} className="flex h-9 w-9 items-center justify-center rounded-full transition hover:bg-muted">
+              <span className="material-symbols-outlined text-muted-foreground">close</span>
             </button>
           </div>
         </div>
 
         <div className="p-6">
           {/* media */}
-          <div className="relative mb-5 overflow-hidden rounded-xl bg-slate-100">
+          <div className="relative mb-5 overflow-hidden rounded-xl bg-muted">
             {loadingDetails ? (
               <div className="flex aspect-video items-center justify-center">
                 <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
@@ -99,36 +101,58 @@ export default function ExerciseDetailsModal({
                 <Image src={imageUrl} alt={data.name} fill className="object-contain" onError={() => setMediaError(true)} unoptimized priority />
               </div>
             ) : (
-              <div className="flex aspect-video items-center justify-center bg-slate-200 text-sm text-slate-400">
-                Media not available
+              <div className="flex aspect-video items-center justify-center text-sm text-muted-foreground">
+                <span className="material-symbols-outlined text-4xl opacity-30">fitness_center</span>
               </div>
             )}
           </div>
 
           {data.overview && (
-            <p className="mb-4 text-sm leading-relaxed text-slate-600">{data.overview}</p>
+            <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{data.overview}</p>
           )}
 
           <div className="mb-5 flex flex-wrap gap-2">
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">Target: {data.target}</span>
-            <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600">Equipment: {data.equipment}</span>
+            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+              Target: {data.target}
+            </span>
+            <span className="rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground">
+              Equipment: {data.equipment}
+            </span>
           </div>
 
           {(data.sets || data.reps || data.restSeconds) && (
-            <div className="mb-5 rounded-xl bg-primary/5 p-4">
+            <div className="mb-5 rounded-xl bg-primary/8 p-4">
               <p className="mb-2 text-xs font-bold uppercase tracking-wide text-primary">Workout Parameters</p>
               <div className="flex gap-8">
-                {data.sets && <div><p className="text-xs text-slate-500">Sets</p><p className="text-lg font-bold text-slate-900">{data.sets}</p></div>}
-                {data.reps && <div><p className="text-xs text-slate-500">Reps</p><p className="text-lg font-bold text-slate-900">{data.reps}</p></div>}
-                {data.restSeconds && <div><p className="text-xs text-slate-500">Rest Time</p><p className="text-lg font-bold text-slate-900">{data.restSeconds}s</p></div>}
+                {data.sets && (
+                  <div>
+                    <p className="text-xs text-muted-foreground">Sets</p>
+                    <p className="text-lg font-bold text-foreground">{data.sets}</p>
+                  </div>
+                )}
+                {data.reps && (
+                  <div>
+                    <p className="text-xs text-muted-foreground">Reps</p>
+                    <p className="text-lg font-bold text-foreground">{data.reps}</p>
+                  </div>
+                )}
+                {data.restSeconds && (
+                  <div>
+                    <p className="text-xs text-muted-foreground">Rest Time</p>
+                    <p className="text-lg font-bold text-foreground">{data.restSeconds}s</p>
+                  </div>
+                )}
               </div>
             </div>
           )}
 
           {data.instructions && data.instructions.length > 0 && (
             <div className="mb-5">
-              <h3 className="mb-2 text-sm font-bold text-slate-900">How to Perform</h3>
-              <ol className="list-decimal space-y-1 pl-5 text-sm text-slate-600">
+              <h3 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <span className="material-symbols-outlined text-base text-primary">format_list_numbered</span>
+                How to Perform
+              </h3>
+              <ol className="list-decimal space-y-1.5 pl-5 text-sm text-muted-foreground">
                 {data.instructions.map((inst, i) => <li key={i}>{inst}</li>)}
               </ol>
             </div>
@@ -136,16 +160,22 @@ export default function ExerciseDetailsModal({
 
           {data.exerciseTips && data.exerciseTips.length > 0 && (
             <div>
-              <h3 className="mb-2 text-sm font-bold text-primary">💡 Pro Tips</h3>
-              <ul className="list-disc space-y-1 pl-5 text-sm text-slate-600">
+              <h3 className="mb-2 flex items-center gap-1.5 text-sm font-bold text-primary" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                <span className="material-symbols-outlined text-base">lightbulb</span>
+                Pro Tips
+              </h3>
+              <ul className="list-disc space-y-1.5 pl-5 text-sm text-muted-foreground">
                 {data.exerciseTips.map((tip, i) => <li key={i}>{tip}</li>)}
               </ul>
             </div>
           )}
         </div>
 
-        <div className="border-t border-slate-100 p-4">
-          <button onClick={onClose} className="w-full rounded-lg bg-primary py-2.5 text-sm font-semibold text-white transition hover:brightness-110">
+        <div className="border-t border-border p-4">
+          <button
+            onClick={onClose}
+            className="w-full rounded-xl bg-primary py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
+          >
             Close
           </button>
         </div>

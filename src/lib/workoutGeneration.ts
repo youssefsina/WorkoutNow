@@ -121,27 +121,19 @@ class WorkoutGenerationService {
     const mappedEquipment = equipment.map(mapEquipmentToExerciseDB);
     // Deduplicate mapped muscles (biceps+triceps both → UPPER ARMS → only need one)
     const mappedMuscles = [...new Set(muscles.map(mapBodyPartToExerciseDB))];
-    console.log("[workout] generating:", { raw: { equipment, muscles }, mapped: { mappedEquipment, mappedMuscles } });
 
-    // Strategy 1: muscles + equipment
+    // Strategy 1: exact match — selected muscles AND selected equipment
     let exercises = await this.fetchWithFallback(mappedMuscles, mappedEquipment);
 
-    // Strategy 2: muscles only (drop equipment restriction)
-    if (exercises.length < exerciseCount) {
-      console.log("[workout] not enough with equipment, retrying muscles-only");
-      const more = await this.fetchWithFallback(mappedMuscles, []);
-      exercises = this.deduplicateExercises([...exercises, ...more]);
+    // Strategy 2: muscles only — if equipment filter is too restrictive but STILL only selected muscles
+    if (exercises.length < Math.min(exerciseCount, 3) && mappedEquipment.length > 0) {
+      const muscleOnly = await this.fetchWithFallback(mappedMuscles, []);
+      exercises = this.deduplicateExercises([...exercises, ...muscleOnly]);
     }
 
-    // Strategy 3: fetch all and use anything
-    if (exercises.length < exerciseCount) {
-      console.log("[workout] still not enough, fetching all exercises");
-      const all = await getCachedExercises({ limit: 50 });
-      exercises = this.deduplicateExercises([...exercises, ...all]);
-    }
-
+    // Never pad with unrelated exercises — return exactly what matched the user's selection
     if (exercises.length === 0) {
-      throw new Error("No exercises available");
+      throw new Error("No exercises found for selected muscles and equipment. Try different selections.");
     }
 
     const shuffled = shuffleArray(exercises);

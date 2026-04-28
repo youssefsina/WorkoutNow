@@ -159,7 +159,7 @@ export default function ActiveWorkoutPage() {
       setRestTime((prev) => {
         if (prev <= 1) {
           stopRest();
-          toast("Rest over — let's go!", { icon: "💪" });
+          toast.success("Rest over — let's go!");
           return 0;
         }
         return prev - 1;
@@ -193,7 +193,7 @@ export default function ActiveWorkoutPage() {
 
   const skipExercise = () => {
     setSkippedExercises((prev) => new Set(prev).add(currentIndex));
-    toast("Exercise skipped", { icon: "⏭️" });
+    toast("Exercise skipped");
     if (currentIndex < generatedExercises.length - 1) {
       setCurrentIndex((i) => i + 1);
     }
@@ -223,7 +223,7 @@ export default function ActiveWorkoutPage() {
         exerciseNames: completedNames,
         durationMinutes,
       });
-      toast.success("Workout completed! Great job! 🎉");
+      toast.success("Workout completed! Great job!");
       reset();
       router.push("/dashboard");
     } catch {
@@ -279,7 +279,7 @@ export default function ActiveWorkoutPage() {
       {/* ── Top Bar: Timer + Progress + Quit ─────── */}
       <div className="mb-3 flex items-center justify-between gap-2 sm:mb-4">
         {/* Timer */}
-        <div className="flex items-center gap-1.5 rounded-xl bg-white px-3 py-2 shadow-sm border border-slate-100 sm:gap-2 sm:px-4">
+        <div className="flex items-center gap-1.5 rounded-xl bg-card px-3 py-2 shadow-sm border border-border sm:gap-2 sm:px-4">
           <span className="material-symbols-outlined text-lg text-primary sm:text-xl">
             timer
           </span>
@@ -331,7 +331,7 @@ export default function ActiveWorkoutPage() {
 
       {/* ── Exercise Card (swipeable on mobile) ──── */}
       <div
-        className="mb-4 overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm animate-fadeUp sm:mb-6"
+        className="mb-4 overflow-hidden rounded-2xl border border-border bg-card shadow-sm animate-fade-up sm:mb-6"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -494,7 +494,7 @@ export default function ActiveWorkoutPage() {
 
           {/* Instructions Panel */}
           {showInstructions && (
-            <div className="mt-4 animate-fadeUp rounded-xl border border-slate-100 bg-slate-50 p-4">
+            <div className="mt-4 animate-fade-up rounded-xl border border-border bg-muted/50 p-4">
               {instructions.length > 0 ? (
                 <div className="mb-3">
                   <h4 className="mb-2 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wide text-slate-600 sm:text-sm">
@@ -581,7 +581,7 @@ export default function ActiveWorkoutPage() {
                 check_circle
               </span>
               {completedExercises.has(currentIndex)
-                ? "Completed ✓"
+                ? "Completed"
                 : skippedExercises.has(currentIndex)
                   ? "Skipped"
                   : currentSet < totalSets

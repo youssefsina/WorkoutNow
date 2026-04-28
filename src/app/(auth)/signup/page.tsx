@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { useAuthStore } from "@/store/useAuthStore";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
@@ -62,8 +63,8 @@ export default function SignUpPage() {
         <div className="w-full max-w-[400px] space-y-6">
           {/* Logo */}
           <div className="flex flex-col items-center text-center">
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/30">
-              <span className="material-symbols-outlined filled text-2xl text-white">fitness_center</span>
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-white shadow-lg shadow-primary/20 overflow-hidden">
+              <Image src="/logo.png" alt="WorkoutNow" width={52} height={52} className="object-contain" priority />
             </div>
             <h1 className="text-2xl font-semibold tracking-tight">Create an account</h1>
             <p className="text-sm text-muted-foreground">

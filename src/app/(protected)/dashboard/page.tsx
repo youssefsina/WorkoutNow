@@ -7,15 +7,16 @@ import {
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import { motion, type Variants } from "framer-motion";
 import { userAPI, workoutAPI } from "@/lib/api";
 import { useAuthStore } from "@/store/useAuthStore";
 import { useTheme } from "@/components/ThemeProvider";
 
+/* ─── Types ─────────────────────────────────────────────── */
 interface DashboardStats {
   totalWorkouts: number;
   weeklyWorkouts: number;
@@ -23,7 +24,6 @@ interface DashboardStats {
   currentStreak: number;
   longestStreak: number;
 }
-
 interface WorkoutSession {
   id: string;
   exercisesCount: number;
@@ -32,7 +32,7 @@ interface WorkoutSession {
   completedAt: string;
 }
 
-/* ── helpers ── */
+/* ─── Helpers ────────────────────────────────────────────── */
 function buildWeekData(history: WorkoutSession[]) {
   return Array.from({ length: 7 }, (_, i) => {
     const d = new Date();
@@ -49,16 +49,38 @@ function buildWeekData(history: WorkoutSession[]) {
   });
 }
 
-/* ── Custom tooltip ── */
-function ChartTooltip({ active, payload, label }: {
+/* ─── Motion variants ───────────────────────────────────── */
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.07,
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
+    },
+  }),
+};
+
+/* ─── Sub-components ─────────────────────────────────────── */
+function Skeleton({ className = "" }: { className?: string }) {
+  return <div className={`animate-pulse rounded-2xl bg-muted ${className}`} />;
+}
+
+function ChartTooltip({
+  active,
+  payload,
+  label,
+}: {
   active?: boolean;
   payload?: { value: number }[];
   label?: string;
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-xl border border-border bg-popover px-3 py-2 text-xs shadow-lg">
-      <p className="font-semibold text-foreground">{label}</p>
+    <div className="rounded-xl border border-border bg-card px-3 py-2 text-xs shadow-xl">
+      <p className="font-bold text-foreground">{label}</p>
       <p className="text-muted-foreground">
         {payload[0].value} session{payload[0].value !== 1 ? "s" : ""}
       </p>
@@ -66,45 +88,48 @@ function ChartTooltip({ active, payload, label }: {
   );
 }
 
-/* ── Skeleton ── */
-function Skeleton({ className = "" }: { className?: string }) {
-  return <div className={`animate-pulse rounded-xl bg-muted ${className}`} />;
-}
-
-/* ── Stat card ── */
+/* ─── Stat Card ─────────────────────────────────────────── */
 function StatCard({
   icon,
-  iconBg,
-  iconColor,
   label,
   value,
-  borderHover,
+  color,
+  index,
 }: {
   icon: string;
-  iconBg: string;
-  iconColor: string;
   label: string;
   value: string;
-  borderHover: string;
+  color: string;
+  index: number;
 }) {
   return (
-    <div
-      className={`flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm transition-all duration-200 hover:shadow-md ${borderHover}`}
+    <motion.div
+      custom={index}
+      variants={fadeUp}
+      initial="hidden"
+      animate="show"
+      className="flex flex-col justify-between rounded-2xl border border-border bg-card p-4 shadow-sm"
     >
-      <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${iconBg}`}>
-        <span className={`material-symbols-outlined filled text-2xl ${iconColor}`}>
+      <div
+        className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl"
+        style={{ background: `${color}18` }}
+      >
+        <span
+          className="material-symbols-outlined filled text-xl"
+          style={{ color }}
+        >
           {icon}
         </span>
       </div>
       <div>
         <p className="text-xs font-medium text-muted-foreground">{label}</p>
-        <p className="text-2xl font-bold text-foreground">{value}</p>
+        <p className="mt-0.5 text-2xl font-extrabold text-foreground">{value}</p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-/* ── Page ── */
+/* ─── Page ───────────────────────────────────────────────── */
 export default function DashboardPage() {
   const user = useAuthStore((s) => s.user);
   const { theme } = useTheme();
@@ -139,137 +164,152 @@ export default function DashboardPage() {
   const monthlyHours = Math.round((stats?.monthlyDuration ?? 0) / 60);
   const remainingSessions = Math.max(weeklyGoal - weeklyWorkouts, 0);
   const weekData = buildWeekData(history);
-
   const isDark = theme === "dark";
-  const gridColor = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)";
-  const axisColor = isDark ? "rgba(255,255,255,0.35)" : "rgba(0,0,0,0.35)";
+
+  /* bar colors */
+  const barActive = "hsl(243,72%,60%)";
+  const barHas = isDark ? "rgba(99,88,217,0.55)" : "rgba(80,71,193,0.45)";
+  const barEmpty = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)";
+  const axisColor = isDark ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)";
 
   return (
-    <div className="space-y-5">
-      {/* ── Welcome Banner ── */}
-      <section className="relative overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-6">
-        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-primary/8 blur-3xl pointer-events-none" />
-        <div className="relative flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
-          <div className="max-w-xl">
-            <h1 className="mb-1.5 text-xl font-bold text-foreground sm:text-2xl">
-              Welcome back, {displayName} 👋
-            </h1>
-            <p className="mb-5 text-sm text-muted-foreground">
-              Keep your momentum! You&apos;re doing great with your fitness goals this month.
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              <Link
-                href="/workout-generator"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20 transition hover:brightness-110"
-              >
-                <span className="material-symbols-outlined filled text-lg">add_circle</span>
-                Generate Workout
-              </Link>
-              <Link
-                href="/history"
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-muted px-5 py-2.5 text-sm font-semibold text-foreground transition hover:bg-accent"
-              >
-                <span className="material-symbols-outlined text-lg">history</span>
-                View History
-              </Link>
-            </div>
-          </div>
+    <div className="space-y-4">
 
-          <div className="hidden shrink-0 md:block">
-            <div className="relative flex h-36 w-36 items-center justify-center rounded-full border border-border bg-muted/50">
-              <div className="absolute inset-0 animate-spin rounded-full border-2 border-dashed border-primary/25 [animation-duration:12s]" />
-              <span className="material-symbols-outlined filled text-5xl text-primary">
-                fitness_center
+      {/* ── Welcome ──────────────────────────────────────── */}
+      <motion.section
+        variants={fadeUp}
+        custom={0}
+        initial="hidden"
+        animate="show"
+        className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-violet-700 p-5 text-white shadow-lg shadow-primary/25"
+      >
+        {/* decorative blobs */}
+        <div className="pointer-events-none absolute -right-8 -top-8 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-6 left-0 h-32 w-32 rounded-full bg-violet-300/10 blur-2xl" />
+
+        <div className="relative">
+          <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-white/60">
+            Welcome back
+          </p>
+          <h1 className="text-2xl font-bold leading-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+            {displayName}
+          </h1>
+          <p className="mt-1 text-sm text-white/70">
+            Keep your momentum going strong!
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            <Link
+              href="/workout-generator"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-white px-4 py-2 text-sm font-bold text-primary shadow-md transition hover:brightness-95"
+            >
+              <span className="material-symbols-outlined filled text-base">
+                add_circle
               </span>
-            </div>
+              Generate Workout
+            </Link>
+            <Link
+              href="/history"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-white/25 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20"
+            >
+              <span className="material-symbols-outlined text-base">
+                history
+              </span>
+              View History
+            </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* ── Stat Cards ── */}
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      {/* ── Stat Cards ───────────────────────────────────── */}
+      <div className="grid grid-cols-3 gap-3">
         {loading ? (
           <>
-            <Skeleton className="h-[76px]" />
-            <Skeleton className="h-[76px]" />
-            <Skeleton className="h-[76px]" />
+            <Skeleton className="h-28" />
+            <Skeleton className="h-28" />
+            <Skeleton className="h-28" />
           </>
         ) : (
           <>
             <StatCard
+              index={1}
               icon="calendar_today"
-              iconBg="bg-primary/10"
-              iconColor="text-primary"
-              label="Total Workouts"
+              label="Total"
               value={String(stats?.totalWorkouts ?? 0)}
-              borderHover="hover:border-primary/30"
+              color="#3b82f6"
             />
             <StatCard
+              index={2}
               icon="trending_up"
-              iconBg="bg-emerald-500/10"
-              iconColor="text-emerald-500"
               label="This Week"
               value={String(weeklyWorkouts)}
-              borderHover="hover:border-emerald-500/30"
+              color="#10b981"
             />
             <StatCard
+              index={3}
               icon="schedule"
-              iconBg="bg-violet-500/10"
-              iconColor="text-violet-500"
-              label="Monthly Hours"
+              label="Mo. Hours"
               value={`${monthlyHours}h`}
-              borderHover="hover:border-violet-500/30"
+              color="#8b5cf6"
             />
           </>
         )}
       </div>
 
-      {/* ── Charts + Streak row ── */}
+      {/* ── Chart + Streak row ────────────────────────────── */}
       {!loading && (
-        <div className="grid gap-4 lg:grid-cols-3">
-          {/* Weekly Activity Chart */}
-          <div className="rounded-2xl border border-border bg-card p-5 shadow-sm lg:col-span-2">
-            <div className="mb-4 flex items-center justify-between">
+        <motion.div
+          variants={fadeUp}
+          custom={4}
+          initial="hidden"
+          animate="show"
+          className="grid grid-cols-5 gap-3"
+        >
+          {/* Bar chart — takes 3 cols */}
+          <div className="col-span-3 rounded-2xl border border-border bg-card p-4 shadow-sm">
+            <div className="mb-3 flex items-center justify-between">
               <div>
-                <h2 className="text-base font-bold text-foreground">Weekly Activity</h2>
-                <p className="text-xs text-muted-foreground">Sessions logged last 7 days</p>
+                <p className="text-sm font-bold text-foreground">Activity</p>
+                <p className="text-[11px] text-muted-foreground">Last 7 days</p>
               </div>
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+              <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
                 7 days
               </span>
             </div>
-            <div className="h-44">
+            <div className="h-36">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={weekData} barSize={28} margin={{ top: 4, right: 4, bottom: 0, left: -20 }}>
-                  <CartesianGrid vertical={false} stroke={gridColor} strokeDasharray="4 4" />
+                <BarChart
+                  data={weekData}
+                  barSize={18}
+                  margin={{ top: 4, right: 0, bottom: 0, left: -28 }}
+                >
                   <XAxis
                     dataKey="day"
-                    tick={{ fontSize: 11, fill: axisColor }}
+                    tick={{ fontSize: 10, fill: axisColor }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
                     allowDecimals={false}
-                    tick={{ fontSize: 11, fill: axisColor }}
+                    tick={{ fontSize: 10, fill: axisColor }}
                     axisLine={false}
                     tickLine={false}
-                    width={24}
+                    width={28}
                   />
-                  <Tooltip content={<ChartTooltip />} cursor={{ fill: "transparent" }} />
-                  <Bar dataKey="workouts" radius={[6, 6, 0, 0]}>
-                    {weekData.map((entry, index) => (
+                  <Tooltip
+                    content={<ChartTooltip />}
+                    cursor={{ fill: "transparent" }}
+                  />
+                  <Bar dataKey="workouts" radius={[6, 6, 2, 2]}>
+                    {weekData.map((entry, i) => (
                       <Cell
-                        key={`cell-${index}`}
+                        key={i}
                         fill={
                           entry.isToday
-                            ? "hsl(var(--primary))"
+                            ? barActive
                             : entry.workouts > 0
-                            ? isDark
-                              ? "rgba(99,102,241,0.45)"
-                              : "rgba(99,102,241,0.3)"
-                            : isDark
-                            ? "rgba(255,255,255,0.06)"
-                            : "rgba(0,0,0,0.06)"
+                            ? barHas
+                            : barEmpty
                         }
                       />
                     ))}
@@ -279,117 +319,141 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Current Streak */}
-          <div className="flex flex-col justify-between rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 p-5 text-white shadow-sm">
-            <div>
-              <div className="mb-1 flex items-center gap-2">
-                <span className="material-symbols-outlined filled text-2xl">local_fire_department</span>
-                <h2 className="text-base font-bold">Current Streak</h2>
-              </div>
-              <p className="mt-2 text-5xl font-extrabold leading-none">
-                {stats?.currentStreak ?? 0}
-                <span className="ml-1.5 text-lg font-semibold opacity-75">days</span>
-              </p>
+          {/* Streak card — takes 2 cols */}
+          <div className="col-span-2 flex flex-col rounded-2xl bg-gradient-to-br from-orange-500 to-red-500 p-4 text-white shadow-sm">
+            <div className="flex items-center gap-1.5 text-sm font-bold">
+              <span className="material-symbols-outlined filled text-xl">
+                local_fire_department
+              </span>
+              Streak
             </div>
-            <div>
-              <div className="mt-5 flex items-center gap-2 rounded-xl bg-white/15 px-4 py-2.5 backdrop-blur-sm">
-                <span className="material-symbols-outlined text-lg">military_tech</span>
-                <span className="text-sm font-medium">
-                  Best: {stats?.longestStreak ?? 0} days
-                </span>
-              </div>
+            <p className="mt-auto text-5xl font-extrabold leading-none">
+              {stats?.currentStreak ?? 0}
+            </p>
+            <p className="mt-0.5 text-sm font-semibold opacity-75">days</p>
+            <div className="mt-3 flex items-center gap-1.5 rounded-xl bg-white/15 px-3 py-2 text-xs font-medium">
+              <span className="material-symbols-outlined text-sm">
+                military_tech
+              </span>
+              Best: {stats?.longestStreak ?? 0}d
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
-      {/* ── Weekly Progress ── */}
+      {/* ── Weekly Goal ───────────────────────────────────── */}
       {!loading && (
-        <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-base font-bold text-foreground">Weekly Goal</h2>
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-              {Math.round(weeklyProgress)}% complete
+        <motion.div
+          variants={fadeUp}
+          custom={5}
+          initial="hidden"
+          animate="show"
+          className="rounded-2xl border border-border bg-card p-4 shadow-sm"
+        >
+          <div className="mb-3 flex items-center justify-between">
+            <p className="text-sm font-bold text-foreground">Weekly Goal</p>
+            <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-primary">
+              {Math.round(weeklyProgress)}% done
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex-1">
-              <div className="mb-2 h-3 overflow-hidden rounded-full bg-muted">
-                <div
-                  className="h-full rounded-full bg-primary shadow-[0_0_10px_rgba(99,102,241,0.4)] transition-all duration-700"
-                  style={{ width: `${weeklyProgress}%` }}
-                />
-              </div>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <span>0 sessions</span>
-                <span>{weeklyGoal} sessions goal</span>
-              </div>
-            </div>
-            <div className="shrink-0 text-right">
-              <p className="text-2xl font-bold text-foreground">
-                {weeklyWorkouts}
-                <span className="text-base font-medium text-muted-foreground">/{weeklyGoal}</span>
-              </p>
-            </div>
+          {/* Progress bar */}
+          <div className="h-2.5 overflow-hidden rounded-full bg-muted">
+            <motion.div
+              className="h-full rounded-full"
+              style={{
+                background: "linear-gradient(90deg, hsl(var(--primary)), #f97316)",
+                boxShadow: "0 0 12px hsl(var(--primary) / 0.4)",
+              }}
+              initial={{ width: 0 }}
+              animate={{ width: `${weeklyProgress}%` }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            />
+          </div>
+
+          <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
+            <span>{weeklyWorkouts} sessions</span>
+            <span className="font-semibold text-foreground">
+              {weeklyWorkouts}
+              <span className="font-normal text-muted-foreground">
+                /{weeklyGoal}
+              </span>
+            </span>
           </div>
 
           {remainingSessions > 0 ? (
-            <div className="mt-4 flex items-center gap-3 rounded-xl bg-primary/8 px-4 py-3">
-              <span className="material-symbols-outlined text-xl text-primary">emoji_events</span>
-              <p className="text-sm text-foreground">
+            <div className="mt-3 flex items-center gap-2 rounded-xl bg-primary/8 px-3 py-2.5 text-xs">
+              <span className="material-symbols-outlined text-base text-primary">
+                emoji_events
+              </span>
+              <span className="text-foreground">
                 <span className="font-bold text-primary">
-                  {remainingSessions} more session{remainingSessions !== 1 ? "s" : ""}
+                  {remainingSessions} more session
+                  {remainingSessions !== 1 ? "s" : ""}
                 </span>{" "}
-                to hit your weekly target.
-              </p>
+                to hit your weekly target
+              </span>
             </div>
           ) : (
-            <div className="mt-4 flex items-center gap-3 rounded-xl bg-emerald-500/10 px-4 py-3">
-              <span className="material-symbols-outlined filled text-xl text-emerald-500">check_circle</span>
-              <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-                Weekly goal reached! Keep it up.
-              </p>
+            <div className="mt-3 flex items-center gap-2 rounded-xl bg-emerald-500/10 px-3 py-2.5 text-xs">
+              <span className="material-symbols-outlined filled text-base text-emerald-500">
+                check_circle
+              </span>
+              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                Weekly goal reached!
+              </span>
             </div>
           )}
-        </div>
+        </motion.div>
       )}
 
-      {/* ── Recent Activity ── */}
-      <section className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm">
-        <div className="flex items-center justify-between border-b border-border px-5 py-4">
-          <h2 className="text-base font-bold text-foreground">Recent Activity</h2>
+      {/* ── Recent Activity ────────────────────────────────── */}
+      <motion.section
+        variants={fadeUp}
+        custom={6}
+        initial="hidden"
+        animate="show"
+        className="overflow-hidden rounded-2xl border border-border bg-card shadow-sm"
+      >
+        <div className="flex items-center justify-between border-b border-border px-4 py-3.5">
+          <p className="text-sm font-bold text-foreground">Recent Activity</p>
           <Link
             href="/history"
-            className="flex items-center gap-1 text-sm font-semibold text-primary transition hover:underline"
+            className="flex items-center gap-0.5 text-xs font-semibold text-primary"
           >
             View All
-            <span className="material-symbols-outlined text-base">arrow_forward</span>
+            <span className="material-symbols-outlined text-sm">
+              chevron_right
+            </span>
           </Link>
         </div>
 
         {loading ? (
-          <div className="space-y-3 p-5">
+          <div className="space-y-3 p-4">
             <Skeleton className="h-14" />
             <Skeleton className="h-14" />
             <Skeleton className="h-14" />
           </div>
         ) : history.length === 0 ? (
-          <div className="py-14 text-center">
-            <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <span className="material-symbols-outlined filled text-3xl text-primary">
+          <div className="py-12 text-center">
+            <div className="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-primary/10">
+              <span className="material-symbols-outlined filled text-2xl text-primary">
                 fitness_center
               </span>
             </div>
-            <p className="mb-1 font-bold text-foreground">No workouts logged yet</p>
-            <p className="mb-5 text-sm text-muted-foreground">
-              Generate your first session and it will appear here.
+            <p className="mb-1 text-sm font-bold text-foreground">
+              No workouts yet
+            </p>
+            <p className="mb-4 text-xs text-muted-foreground">
+              Generate your first session to get started.
             </p>
             <Link
               href="/workout-generator"
-              className="inline-flex items-center gap-2 rounded-xl border border-primary px-5 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary/8"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-primary px-4 py-2 text-sm font-semibold text-primary"
             >
-              <span className="material-symbols-outlined filled text-lg">auto_awesome</span>
+              <span className="material-symbols-outlined filled text-base">
+                auto_awesome
+              </span>
               Create First Workout
             </Link>
           </div>
@@ -402,43 +466,60 @@ export default function DashboardPage() {
                   ? session.exerciseNames[0]
                   : `${session.exercisesCount} exercises`;
               return (
-                <div
+                <motion.div
                   key={session.id}
-                  className="flex items-center gap-4 px-5 py-3.5 transition-colors hover:bg-muted/50"
-                  style={{ animationDelay: `${index * 40}ms` }}
+                  custom={index}
+                  variants={fadeUp}
+                  initial="hidden"
+                  animate="show"
+                  className="flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted/40"
                 >
                   <div
-                    className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
                       index === 0
                         ? "bg-primary/15 text-primary"
                         : "bg-muted text-muted-foreground"
                     }`}
                   >
-                    <span className="material-symbols-outlined filled text-xl">fitness_center</span>
+                    <span className="material-symbols-outlined filled text-lg">
+                      fitness_center
+                    </span>
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-foreground">{label}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {d.toLocaleDateString("en-US", { month: "short", day: "numeric" })},{" "}
-                      {d.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" })}
+                    <p className="truncate text-sm font-semibold text-foreground">
+                      {label}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">
+                      {d.toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                      })}
+                      {" · "}
+                      {d.toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "2-digit",
+                      })}
                     </p>
                   </div>
 
-                  <span className="hidden text-sm font-medium text-muted-foreground sm:block">
-                    {session.durationMinutes > 0 ? `${session.durationMinutes} min` : "—"}
-                  </span>
-
-                  <span className="flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                    Done
-                  </span>
-                </div>
+                  <div className="flex flex-col items-end gap-1">
+                    {session.durationMinutes > 0 && (
+                      <span className="text-xs font-medium text-muted-foreground">
+                        {session.durationMinutes}m
+                      </span>
+                    )}
+                    <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      Done
+                    </span>
+                  </div>
+                </motion.div>
               );
             })}
           </div>
         )}
-      </section>
+      </motion.section>
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 import { useTheme } from "@/components/ThemeProvider";
 
 const NAV_ITEMS = [
@@ -161,9 +162,14 @@ export default function AnimatedMobileNav() {
 
         {/* Footer */}
         <div className="absolute bottom-8 flex flex-col items-center gap-2">
-          <p className={`text-sm ${isDark ? "text-zinc-500" : "text-zinc-400"}`}>
-            WorkoutNow
-          </p>
+          <div className="flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-white overflow-hidden shadow-sm">
+              <Image src="/logo.png" alt="WorkoutNow" width={24} height={24} className="object-contain" />
+            </div>
+            <p className={`text-sm font-semibold ${isDark ? "text-zinc-400" : "text-zinc-500"}`}>
+              WorkoutNow
+            </p>
+          </div>
           <div className="flex items-center gap-1">
             <div className="h-1 w-8 rounded-full bg-gradient-to-r from-primary to-violet-500" />
             <div className="h-1 w-4 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500" />

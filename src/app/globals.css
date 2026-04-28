@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @tailwind base;
@@ -7,58 +8,60 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    /* ── Light mode: clean white with indigo accent ── */
+    --background: 240 12% 97%;
+    --foreground: 240 18% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card-foreground: 240 18% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
+    --popover-foreground: 240 18% 10%;
+    --primary: 243 72% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 30% 93%;
+    --secondary-foreground: 240 18% 22%;
+    --muted: 240 15% 94%;
+    --muted-foreground: 240 10% 48%;
+    --accent: 240 30% 93%;
+    --accent-foreground: 240 18% 22%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 217.2 91.2% 59.8%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
+    --border: 240 12% 88%;
+    --input: 240 12% 88%;
+    --ring: 243 72% 56%;
+    --radius: 0.875rem;
+    --chart-1: 243 72% 56%;
     --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
+    --chart-3: 197 70% 45%;
     --chart-4: 43 96% 56%;
-    --chart-5: 27 87% 67%;
+    --chart-5: 280 65% 58%;
   }
 
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    /* ── Dark mode: deep navy/charcoal + vivid indigo ── */
+    --background: 238 22% 7%;
+    --foreground: 240 12% 94%;
+    --card: 238 18% 11%;
+    --card-foreground: 240 12% 94%;
+    --popover: 238 18% 13%;
+    --popover-foreground: 240 12% 94%;
+    --primary: 243 72% 64%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 238 15% 18%;
+    --secondary-foreground: 240 12% 88%;
+    --muted: 238 15% 16%;
+    --muted-foreground: 240 8% 54%;
+    --accent: 238 15% 18%;
+    --accent-foreground: 240 12% 88%;
+    --destructive: 0 60% 42%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 217.2 91.2% 59.8%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 238 14% 20%;
+    --input: 238 14% 20%;
+    --ring: 243 72% 64%;
+    --chart-1: 243 72% 64%;
+    --chart-2: 173 58% 48%;
+    --chart-3: 197 70% 50%;
+    --chart-4: 43 90% 58%;
+    --chart-5: 280 65% 62%;
   }
 }
 
@@ -72,6 +75,11 @@
     color: hsl(var(--foreground));
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -149,11 +157,13 @@ html, body {
   animation: fade-in 0.3s ease-out;
 }
 
-.animate-fade-up {
+.animate-fade-up,
+.animate-fadeUp {
   animation: fade-up 0.4s ease-out;
 }
 
-.animate-scale-in {
+.animate-scale-in,
+.animate-scaleIn {
   animation: scale-in 0.3s ease-out;
 }
 

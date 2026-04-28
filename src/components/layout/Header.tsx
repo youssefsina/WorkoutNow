@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import ThemeToggle from "@/components/ui/ThemeToggle";
-import StaggeredMenu from "@/components/ui/StaggeredMenu";
 
 const PAGE_TITLES: Record<string, string> = {
   "/dashboard": "Dashboard",
@@ -12,20 +12,6 @@ const PAGE_TITLES: Record<string, string> = {
   "/profile": "Profile",
   "/workout/active": "Active Workout",
 };
-
-const NAV_ITEMS = [
-  { label: "Dashboard", href: "/dashboard" },
-  { label: "Generator", href: "/workout-generator" },
-  { label: "Favorites", href: "/favorites" },
-  { label: "History", href: "/history" },
-  { label: "Profile", href: "/profile" },
-];
-
-const SECONDARY_LINKS = [
-  { href: "/workout-generator", label: "New Workout" },
-  { href: "/favorites", label: "Favorites" },
-  { href: "/history", label: "History" },
-];
 
 export default function Header() {
   const pathname = usePathname();
@@ -42,17 +28,17 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile header */}
+      {/* Mobile header — logo left, theme toggle right, NO hamburger */}
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-xl lg:hidden">
-        <div className="h-[2px] w-full bg-gradient-to-r from-primary via-indigo-500 to-violet-500 opacity-50" />
+        <div className="h-[2px] w-full bg-gradient-to-r from-primary to-violet-500 opacity-80" />
         <div className="flex items-center justify-between px-4 py-2.5">
           {/* Logo + page title */}
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white shadow-md shadow-primary/25">
-              <span className="material-symbols-outlined filled text-base">bolt</span>
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white shadow-md shadow-primary/25 overflow-hidden">
+              <Image src="/logo.png" alt="WorkoutNow" width={32} height={32} className="object-contain" priority />
             </div>
             <div>
-              <span className="text-sm font-extrabold tracking-tight">
+              <span className="text-sm font-bold tracking-tight" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
                 Workout<span className="text-primary">Now</span>
               </span>
               {title && (
@@ -63,31 +49,8 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-1.5">
-            <ThemeToggle className="h-9 w-9 rounded-xl" />
-            <StaggeredMenu
-              side="right"
-              buttonClassName="h-9 rounded-xl border-border bg-muted px-3 text-[0.6rem] tracking-[0.22em] text-foreground shadow-none backdrop-blur-none hover:bg-accent"
-              brand={
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/45">
-                    WorkoutNow
-                  </p>
-                  <p className="text-sm font-medium text-white/85">Navigation</p>
-                </div>
-              }
-              items={NAV_ITEMS.map((item) => ({
-                href: item.href,
-                label: item.label,
-                eyebrow:
-                  pathname === item.href || pathname.startsWith(item.href + "/")
-                    ? "Current"
-                    : "Open",
-              }))}
-              secondaryLinks={SECONDARY_LINKS}
-            />
-          </div>
+          {/* Theme toggle only — no hamburger */}
+          <ThemeToggle className="h-9 w-9 rounded-xl" />
         </div>
       </header>
     </>

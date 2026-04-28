@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import Image from "next/image";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const LiquidChrome = dynamic(() => import("@/components/ui/LiquidChrome"), { ssr: false });
@@ -78,8 +79,8 @@ export default function HomePage() {
         {/* ── Navbar ── */}
         <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/12 bg-white/10 backdrop-blur-xl">
-              <span className="material-symbols-outlined filled text-lg text-white">fitness_center</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white shadow-lg shadow-white/10 overflow-hidden">
+              <Image src="/logo.png" alt="WorkoutNow" width={40} height={40} className="object-contain" priority />
             </div>
             <span className="text-base font-black tracking-tight">WorkoutNow</span>
           </Link>
@@ -273,7 +274,7 @@ export default function HomePage() {
 
                 <div className="grid shrink-0 grid-cols-2 gap-3 lg:w-[22rem]">
                   {[
-                    { icon: "local_fire_department", label: "Current Streak", value: "🔥 Track it" },
+                    { icon: "local_fire_department", label: "Current Streak", value: "Track it" },
                     { icon: "emoji_events", label: "Weekly Goal", value: "4 sessions" },
                     { icon: "history", label: "All Sessions", value: "Every log" },
                     { icon: "favorite", label: "Favorites", value: "Save any" },
@@ -297,8 +298,8 @@ export default function HomePage() {
 
         <footer className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 border-t border-white/[0.06] px-6 py-8 sm:flex-row lg:px-10">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/12 bg-white/10">
-              <span className="material-symbols-outlined filled text-xs text-white">fitness_center</span>
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white overflow-hidden">
+              <Image src="/logo.png" alt="WorkoutNow" width={28} height={28} className="object-contain" />
             </div>
             <span className="text-sm font-bold text-white/60">WorkoutNow</span>
           </div>

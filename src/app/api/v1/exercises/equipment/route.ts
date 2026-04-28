@@ -27,11 +27,18 @@ export async function GET() {
       return NextResponse.json({ data: equipmentCache.data });
     }
 
-    // Try DB first
-    let equipment = await prisma.equipment.findMany({
-      select: { id: true, name: true, iconUrl: true },
+    // Try DB first — use lowercase name as ID for ExerciseDB mapping compatibility
+    const rawEquipment = await prisma.equipment.findMany({
+      select: { name: true, iconUrl: true },
       orderBy: { name: "asc" },
     });
+    let equipment: { id: string; name: string; iconUrl: string | null }[] = rawEquipment.map(
+      (e: { name: string; iconUrl: string | null }) => ({
+        id: e.name.toLowerCase().replace(/\s+/g, "_"),
+        name: e.name,
+        iconUrl: e.iconUrl,
+      })
+    );
 
     // Fallback to ExerciseDB API if DB is empty
     if (equipment.length === 0) {
