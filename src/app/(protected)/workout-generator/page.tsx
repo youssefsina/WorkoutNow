@@ -9,8 +9,9 @@ import { useWorkoutStore } from "@/store/useWorkoutStore";
 import ExerciseCard, { Exercise } from "@/components/workout/ExerciseCard";
 import ExerciseDetailsModal from "@/components/workout/ExerciseDetailsModal";
 import BodyMap from "@/components/workout/BodyMap";
+import Stepper, { Step } from "@/components/ui/Stepper";
 
-const steps = ["Equipment", "Muscles", "Workout"];
+const STEP_LABELS = ["Equipment", "Muscles", "Workout"];
 
 type OptionItem = string | { id: string; name: string };
 
@@ -47,6 +48,7 @@ export default function WorkoutGeneratorPage() {
     replaceExercise,
     nextStep,
     prevStep,
+    setCurrentStep,
   } = useWorkoutStore();
 
   const [equipmentList, setEquipmentList] = useState<OptionItem[]>([]);
@@ -55,8 +57,12 @@ export default function WorkoutGeneratorPage() {
   const [loading, setLoading] = useState(true);
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [detailsModalOpen, setDetailsModalOpen] = useState(false);
-  // track which exercise id is currently being replaced
   const [replacingId, setReplacingId] = useState<string | null>(null);
+
+  // Reset to step 1 on every page load / refresh
+  useEffect(() => {
+    setCurrentStep(0);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleViewDetails = (exercise: Exercise) => {
     setSelectedExercise(exercise);
@@ -164,51 +170,41 @@ export default function WorkoutGeneratorPage() {
     <div>
       {/* Title */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-foreground sm:text-3xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+        <h1
+          className="text-2xl font-bold text-foreground sm:text-3xl"
+          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+        >
           Workout <span className="text-primary">Generator</span>
         </h1>
-        <p className="mt-1 text-sm text-muted-foreground">Customize your perfect workout in 3 steps</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Customize your perfect workout in 3 steps
+        </p>
       </div>
 
-      {/* Stepper */}
-      <div className="mb-8 flex items-center justify-between">
-        {steps.map((label, i) => {
-          const done = i < currentStep;
-          const active = i === currentStep;
-          return (
-            <div key={label} className="flex flex-1 items-center">
-              <div className="flex flex-col items-center gap-1.5">
-                <div
-                  className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-300 ${
-                    done
-                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
-                      : active
-                        ? "bg-primary text-primary-foreground ring-4 ring-primary/20 shadow-lg shadow-primary/20"
-                        : "bg-muted text-muted-foreground"
-                  }`}
+      {/* Animated Stepper */}
+      <Stepper
+        step={currentStep + 1}
+        disableStepIndicators
+        stepLabels={STEP_LABELS}
+      >
+        {/* ── Step 1: Equipment ── */}
+        <Step>
+          <div className="mb-5">
+            <div className="mb-3 flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
+                <span className="material-symbols-outlined text-xl text-primary">fitness_center</span>
+              </div>
+              <div>
+                <h2
+                  className="text-xl font-bold text-foreground"
                   style={{ fontFamily: "'Space Grotesk', sans-serif" }}
                 >
-                  {done ? <span className="material-symbols-outlined text-lg">check</span> : i + 1}
-                </div>
-                <span className={`hidden text-xs font-semibold sm:block ${active ? "text-primary" : "text-muted-foreground"}`}>
-                  {label}
-                </span>
+                  What equipment do you have?
+                </h2>
+                <p className="text-sm text-muted-foreground">Select all that apply.</p>
               </div>
-              {i < steps.length - 1 && (
-                <div className={`mx-2 h-0.5 flex-1 rounded-full transition-all duration-500 ${done ? "bg-primary" : "bg-border"}`} />
-              )}
             </div>
-          );
-        })}
-      </div>
-
-      {/* ── Step 0: Equipment ── */}
-      {currentStep === 0 && (
-        <div className="animate-fade-up">
-          <h2 className="mb-1 text-xl font-bold text-foreground sm:text-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            What equipment do you have?
-          </h2>
-          <p className="mb-5 text-sm text-muted-foreground">Select all that apply.</p>
+          </div>
 
           {loading ? (
             <div className="flex justify-center py-12">
@@ -236,12 +232,19 @@ export default function WorkoutGeneratorPage() {
                         <span className="material-symbols-outlined text-sm">check</span>
                       </span>
                     )}
-                    <div className={`mb-2.5 flex h-12 w-12 items-center justify-center rounded-xl ${active ? "bg-primary/15" : "bg-muted"}`}>
-                      <span className={`material-symbols-outlined text-2xl ${active ? "text-primary" : "text-muted-foreground"}`}>
+                    <div
+                      className={`mb-2.5 flex h-12 w-12 items-center justify-center rounded-xl ${active ? "bg-primary/15" : "bg-muted"}`}
+                    >
+                      <span
+                        className={`material-symbols-outlined text-2xl ${active ? "text-primary" : "text-muted-foreground"}`}
+                      >
                         {getEquipmentIcon(eqId)}
                       </span>
                     </div>
-                    <p className={`text-sm font-semibold ${active ? "text-primary" : "text-foreground"}`} style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+                    <p
+                      className={`text-sm font-semibold ${active ? "text-primary" : "text-foreground"}`}
+                      style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                    >
                       {eqName}
                     </p>
                   </button>
@@ -249,45 +252,72 @@ export default function WorkoutGeneratorPage() {
               })}
             </div>
           )}
-        </div>
-      )}
+        </Step>
 
-      {/* ── Step 1: Muscles ── */}
-      {currentStep === 1 && (
-        <div className="animate-fade-up">
-          <h2 className="mb-1 text-xl font-bold text-foreground sm:text-2xl" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-            Which muscles do you want to target?
-          </h2>
-          <p className="mb-5 text-sm text-muted-foreground">Click on the body map or list to select muscle groups.</p>
+        {/* ── Step 2: Muscles ── */}
+        <Step>
+          <div className="mb-5">
+            <div className="mb-3 flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10">
+                <span className="material-symbols-outlined text-xl text-primary">
+                  accessibility_new
+                </span>
+              </div>
+              <div>
+                <h2
+                  className="text-xl font-bold text-foreground"
+                  style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+                >
+                  Which muscles to target?
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Click the body map or list to select muscle groups.
+                </p>
+              </div>
+            </div>
+          </div>
+
           {loading ? (
             <div className="flex justify-center py-12">
               <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
             </div>
           ) : (
-            <BodyMap muscleList={muscleList} selectedMuscles={selectedMuscles} onToggleMuscle={toggleMuscle} />
+            <BodyMap
+              muscleList={muscleList}
+              selectedMuscles={selectedMuscles}
+              onToggleMuscle={toggleMuscle}
+            />
           )}
-        </div>
-      )}
+        </Step>
 
-      {/* ── Step 2: Preview ── */}
-      {currentStep === 2 && (
-        <div className="animate-fade-up">
+        {/* ── Step 3: Workout Preview ── */}
+        <Step>
           <div className="mb-5 flex items-center gap-2.5">
-            <span className="material-symbols-outlined filled text-2xl text-emerald-500">check_circle</span>
+            <span className="material-symbols-outlined filled text-2xl text-emerald-500">
+              check_circle
+            </span>
             <div>
-              <h2 className="text-xl font-bold text-foreground" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
+              <h2
+                className="text-xl font-bold text-foreground"
+                style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+              >
                 Workout Preview
               </h2>
               <p className="text-sm text-muted-foreground">
-                {generatedExercises.length} exercise{generatedExercises.length !== 1 ? "s" : ""} — use Replace or Remove per card
+                {generatedExercises.length} exercise
+                {generatedExercises.length !== 1 ? "s" : ""} — use Replace or Remove per card
               </p>
             </div>
           </div>
 
           {generatedExercises.length === 0 ? (
             <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-border py-16 text-center">
-              <span className="material-symbols-outlined text-4xl text-muted-foreground/40">fitness_center</span>
-              <p className="mt-3 text-sm font-semibold text-muted-foreground">All exercises removed</p>
+              <span className="material-symbols-outlined text-4xl text-muted-foreground/40">
+                fitness_center
+              </span>
+              <p className="mt-3 text-sm font-semibold text-muted-foreground">
+                All exercises removed
+              </p>
               <button
                 type="button"
                 onClick={() => prevStep()}
@@ -299,7 +329,11 @@ export default function WorkoutGeneratorPage() {
           ) : (
             <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
               {generatedExercises.map((exercise: any, index: number) => (
-                <div key={exercise.id || index} className="animate-fade-up" style={{ animationDelay: `${index * 50}ms` }}>
+                <div
+                  key={exercise.id || index}
+                  className="animate-fade-up"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
                   <ExerciseCard
                     exercise={normalizeExercise(exercise)}
                     onViewDetails={handleViewDetails}
@@ -312,10 +346,10 @@ export default function WorkoutGeneratorPage() {
               ))}
             </div>
           )}
-        </div>
-      )}
+        </Step>
+      </Stepper>
 
-      {/* Navigation */}
+      {/* Navigation buttons */}
       <div className="mt-8 flex items-center gap-3">
         <button
           type="button"
@@ -331,7 +365,10 @@ export default function WorkoutGeneratorPage() {
           <button
             type="button"
             disabled={!canProceed || generating}
-            onClick={() => { if (currentStep === 1) void handleGenerate(); else nextStep(); }}
+            onClick={() => {
+              if (currentStep === 1) void handleGenerate();
+              else nextStep();
+            }}
             className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-bold text-primary-foreground shadow-md shadow-primary/25 transition hover:brightness-110 disabled:opacity-40"
             style={{ fontFamily: "'Space Grotesk', sans-serif" }}
           >
