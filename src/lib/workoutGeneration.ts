@@ -76,7 +76,7 @@ function transformToGeneratedExercise(exercise: ExerciseDBExercise): GeneratedEx
       .split(" ")
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" "),
-    target: exercise.targetMuscles?.[0] || exercise.bodyParts?.[0] || "Full Body",
+    target: exercise.bodyParts?.[0] || exercise.targetMuscles?.[0] || "Full Body",
     equipment: exercise.equipments?.[0] || "Bodyweight",
     imageUrl: exercise.imageUrl || "",
     videoUrl: exercise.videoUrl,
