@@ -1,317 +1,885 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import Image from "next/image";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
-const LiquidChrome = dynamic(() => import("@/components/ui/LiquidChrome"), { ssr: false });
+// ─── Data ────────────────────────────────────────────────────
 
-const navLinks = [
-  { href: "#features", label: "Features" },
-  { href: "#how-it-works", label: "How It Works" },
-  { href: "#tracking", label: "Tracking" },
-];
-
-const featureCards = [
+const COLLECTION = [
   {
+    no: "— 01",
     icon: "auto_awesome",
-    label: "Generator",
-    title: "Smart Workout Generator",
-    body: "Pick your equipment and target muscles — get a ready-to-go workout in seconds, no planning required.",
+    title: "Smart Generator",
+    desc: "Select your equipment and target muscles. A curated workout assembles in seconds — sets, reps, and rest periods included.",
   },
   {
+    no: "— 02",
     icon: "history",
-    label: "History",
-    title: "History & Favorites",
-    body: "Every session is logged automatically. Star exercises you love and revisit them any time.",
+    title: "Session Archive",
+    desc: "Every completed session is cataloged automatically. Mark favorites. Return to what worked.",
   },
   {
+    no: "— 03",
     icon: "monitoring",
-    label: "Progress",
-    title: "Progress Dashboard",
-    body: "Track streaks, weekly goals, total workouts, and monthly training hours from one clean dashboard.",
+    title: "Progress Gallery",
+    desc: "Streak counters, weekly targets, total volume, and monthly hours — rendered in one clean dashboard.",
   },
 ];
 
-const workflowSteps = [
+const EXHIBITION = [
   {
-    num: "01",
-    icon: "fitness_center",
-    title: "Choose Your Equipment",
-    body: "Select the machines, free weights, or bodyweight setup available to you today.",
+    no: "I",
+    tag: "Equipment",
+    title: "Select Equipment",
+    desc: "Choose the apparatus available to you — barbells, machines, cables, or bodyweight. Your choice defines the palette.",
   },
   {
-    num: "02",
-    icon: "accessibility_new",
-    title: "Pick Target Muscles",
-    body: "Focus the session on specific muscle groups instead of following a generic routine.",
+    no: "II",
+    tag: "Muscles",
+    title: "Target Muscles",
+    desc: "Define the muscle groups you want to develop. Precision over generality. Every session has an intention.",
   },
   {
-    num: "03",
-    icon: "play_circle",
+    no: "III",
+    tag: "Session",
     title: "Generate & Train",
-    body: "Review exercises, read instructions, start the timer, and log the completed session.",
+    desc: "Review the curated exercise list. Begin the session. Your performance is logged — permanently.",
   },
 ];
 
-const trustStats = [
-  { value: "3", unit: "steps", label: "to generate a workout" },
-  { value: "∞", unit: "", label: "sessions tracked" },
-  { value: "100%", unit: "", label: "free to use" },
+const MOCK_EXERCISES = [
+  { name: "BARBELL SQUAT",       detail: "4 × 6–8"   },
+  { name: "ROMANIAN DEADLIFT",   detail: "3 × 10–12" },
+  { name: "LEG PRESS",           detail: "3 × 12–15" },
+  { name: "WALKING LUNGES",      detail: "3 × 20"    },
+  { name: "STANDING CALF RAISE", detail: "4 × 15–20" },
 ];
+
+const TICKER_ITEMS = [
+  "GENERATE WORKOUTS", "TRACK PROGRESS", "FAVORITE EXERCISES",
+  "BUILD CONSISTENCY", "TRAIN SMARTER", "LOG SESSIONS",
+];
+
+const ARCHIVE_CARDS = [
+  { icon: "local_fire_department", label: "Current Streak", val: "Track it"    },
+  { icon: "emoji_events",          label: "Weekly Goal",    val: "4 sessions"  },
+  { icon: "history",               label: "All Sessions",   val: "Every log"   },
+  { icon: "favorite",              label: "Favorites",      val: "Save any"    },
+];
+
+// ─── Page ─────────────────────────────────────────────────────
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#050816] text-white">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <LiquidChrome
-          baseColor={[0.1, 0.1, 0.1]}
-          speed={1}
-          amplitude={0.6}
-          interactive
-        />
-      </div>
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,8,8,0.04),rgba(8,8,8,0.4)_48%,rgba(8,8,8,0.82)_100%)]" />
+    <div className="gallery-root">
+      {/* Ambient indigo glow at top */}
+      <div className="gallery-glow" aria-hidden />
 
-      <div className="relative z-10">
-        {/* ── Navbar ── */}
-        <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-5 lg:px-10">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white shadow-lg shadow-white/10 overflow-hidden">
-              <Image src="/logo.png" alt="WorkoutNow" width={40} height={40} className="object-contain" priority />
+      <div style={{ position: "relative", zIndex: 1 }}>
+
+        {/* ═══════════════════════════════════════════════════
+            NAVBAR
+        ═══════════════════════════════════════════════════ */}
+        <header className="gallery-header">
+          <div className="gallery-container gallery-nav-inner">
+            {/* Logo */}
+            <Link href="/" className="gallery-logo">
+              <div className="gallery-logo-icon">
+                <Image src="/logo.png" alt="WorkoutNow" width={32} height={32} className="object-contain" priority />
+              </div>
+              <span className="gallery-logo-text">WorkoutNow</span>
+            </Link>
+
+            {/* Nav links */}
+            <nav className="gallery-nav-links">
+              {[
+                { href: "#collection", label: "Collection" },
+                { href: "#exhibition", label: "Exhibition" },
+                { href: "#archive",    label: "Archive"    },
+              ].map((item) => (
+                <a key={item.href} href={item.href} className="gallery-nav-link">
+                  {item.label}
+                </a>
+              ))}
+            </nav>
+
+            {/* Actions */}
+            <div className="gallery-nav-actions">
+              <Link href="/login" className="gallery-btn-ghost">Sign In</Link>
+              <Link href="/signup" className="gallery-btn-solid">
+                Get Started
+                <span className="material-symbols-outlined gallery-btn-icon">north_east</span>
+              </Link>
+              <ThemeToggle className="gallery-theme-toggle" />
             </div>
-            <span className="text-base font-black tracking-tight">WorkoutNow</span>
-          </Link>
-
-          <nav className="hidden items-center gap-8 lg:flex">
-            {navLinks.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-white/65 transition-colors hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="flex items-center gap-2.5">
-            <Link
-              href="/login"
-              className="hidden rounded-full border border-white/12 bg-white/[0.05] px-5 py-2 text-sm font-semibold text-white/75 backdrop-blur-xl transition hover:border-white/25 hover:bg-white/[0.09] hover:text-white sm:inline-flex"
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="inline-flex items-center gap-1.5 rounded-full bg-white px-5 py-2 text-sm font-bold text-[#0b1020] transition hover:bg-[#e8efff]"
-            >
-              Get Started
-              <span className="material-symbols-outlined text-base leading-none">north_east</span>
-            </Link>
-            <ThemeToggle className="border-white/12 bg-white/[0.08] text-white shadow-none backdrop-blur-xl hover:bg-white/[0.14] hover:text-white" />
           </div>
         </header>
 
-        <main>
-          {/* ── Hero ── */}
-          <section className="mx-auto min-h-[calc(100vh-5rem)] w-full max-w-7xl px-6 pb-20 pt-8 lg:px-10">
-            <div className="relative flex min-h-[calc(100vh-10rem)] flex-col items-center justify-center">
-              {/* Glow */}
-              <div className="pointer-events-none absolute left-1/2 top-[15%] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.18),rgba(99,102,241,0.06)_42%,transparent_70%)] blur-3xl" />
+        {/* ═══════════════════════════════════════════════════
+            HERO
+        ═══════════════════════════════════════════════════ */}
+        <section className="gallery-hero gallery-container">
+          <div className="gallery-hero-grid">
 
-              <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center text-center">
-                {/* Badge */}
-                <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.07] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-white/70 backdrop-blur-xl">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.8)]" />
-                  Adaptive Fitness Platform
+            {/* ── Left: editorial copy ── */}
+            <div>
+              <div className="gallery-eyebrow">
+                <span className="gallery-eyebrow-line" />
+                Exhibition N°001
+              </div>
+
+              <h1 className="gallery-h1">
+                Your<br />
+                workout,<br />
+                <span className="gallery-h1-outline">built for you.</span>
+              </h1>
+
+              <div className="gallery-accent-rule" />
+
+              <p className="gallery-hero-body">
+                Generate sessions from your equipment and target muscles.
+                Track favorites, history, streaks, and goals —
+                all in one place.
+              </p>
+
+              <div className="gallery-cta-row">
+                <Link href="/signup" className="gallery-cta-primary">
+                  Begin Training
+                  <span className="material-symbols-outlined gallery-btn-icon">north_east</span>
+                </Link>
+                <a
+                  href="https://github.com/youssefsina/WorkoutNow"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="gallery-cta-outline"
+                >
+                  View Source
+                </a>
+              </div>
+
+              {/* Stats strip */}
+              <div className="gallery-stats">
+                {[
+                  { val: "3",    sub: "steps"    },
+                  { val: "∞",    sub: "sessions" },
+                  { val: "Free", sub: "always"   },
+                ].map((s) => (
+                  <div key={s.sub} className="gallery-stat">
+                    <div className="gallery-stat-val">{s.val}</div>
+                    <div className="gallery-stat-sub">{s.sub}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ── Right: artwork panel ── */}
+            <div className="gallery-artwork-wrap">
+              <div className="gallery-artwork">
+                {/* Artwork header */}
+                <div className="gallery-artwork-header">
+                  <span className="gallery-label">Curated Workout · Legs</span>
+                  <div className="gallery-artwork-dots">
+                    <span className="gallery-dot gallery-dot-accent" />
+                    <span className="gallery-dot gallery-dot-dim" />
+                    <span className="gallery-dot gallery-dot-ghost" />
+                  </div>
                 </div>
 
-                {/* Headline */}
-                <h1 className="max-w-4xl text-[clamp(3.2rem,9vw,6.8rem)] font-black leading-[0.88] tracking-[-0.08em] text-white">
-                  Your workout,
-                  <br />
-                  <span className="bg-gradient-to-r from-indigo-300 via-violet-300 to-blue-300 bg-clip-text text-transparent">
-                    built for you.
-                  </span>
-                </h1>
-
-                {/* Sub */}
-                <p className="mt-7 max-w-2xl text-lg leading-8 text-white/58 sm:text-xl">
-                  Generate sessions from your equipment and target muscles. Track favorites, history, streaks, and goals — all in one place.
-                </p>
-
-                {/* CTAs */}
-                <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-                  <Link
-                    href="/signup"
-                    className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-8 py-3.5 text-base font-bold text-white shadow-[0_16px_40px_rgba(99,102,241,0.35)] transition hover:bg-indigo-400"
-                  >
-                    Start for Free
-                    <span className="material-symbols-outlined text-[1.05rem]">north_east</span>
-                  </Link>
-                  <a
-                    href="https://github.com/youssefsina/WorkoutNow"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/14 bg-white/[0.06] px-8 py-3.5 text-base font-semibold text-white/85 backdrop-blur-xl transition hover:border-white/28 hover:bg-white/[0.1]"
-                  >
-                    <span className="material-symbols-outlined filled text-[1.05rem]">star</span>
-                    Star on GitHub
-                  </a>
-                </div>
-
-                <p className="mt-4 text-xs text-white/36">Free and open source.</p>
-
-                {/* Trust strip */}
-                <div className="mt-14 flex w-full max-w-xl items-center justify-center gap-0 rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl divide-x divide-white/10">
-                  {trustStats.map((s) => (
-                    <div key={s.label} className="flex-1 px-5 py-4 text-center">
-                      <p className="text-2xl font-black tracking-tight text-white">
-                        {s.value}
-                        {s.unit && <span className="ml-0.5 text-base font-semibold text-white/60">{s.unit}</span>}
-                      </p>
-                      <p className="mt-1 text-[0.65rem] uppercase tracking-[0.2em] text-white/40">{s.label}</p>
+                {/* Exercise list */}
+                <div>
+                  {MOCK_EXERCISES.map((ex, i) => (
+                    <div key={i} className={`gallery-exercise-row${i < MOCK_EXERCISES.length - 1 ? " gallery-exercise-row-border" : ""}`}>
+                      <div className="gallery-exercise-left">
+                        <span className="gallery-exercise-num">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span className="gallery-exercise-name">{ex.name}</span>
+                      </div>
+                      <span className="gallery-exercise-detail">{ex.detail}</span>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </section>
 
-          {/* ── Features ── */}
-          <section id="features" className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
-            <div className="mb-10 text-center">
-              <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-white/40">Features</p>
-              <h2 className="text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
-                Everything you need to train smarter
-              </h2>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {featureCards.map((card) => (
-                <article
-                  key={card.title}
-                  className="group relative overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.07),rgba(255,255,255,0.02))] p-7 shadow-[0_20px_50px_rgba(0,0,0,0.14)] backdrop-blur-2xl transition hover:border-white/18"
-                >
-                  <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-white/12 bg-indigo-500/20 text-indigo-300">
-                    <span className="material-symbols-outlined filled text-xl">{card.icon}</span>
-                  </div>
-                  <p className="mb-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.28em] text-white/38">{card.label}</p>
-                  <h3 className="mb-3 text-xl font-bold text-white">{card.title}</h3>
-                  <p className="text-sm leading-7 text-white/55">{card.body}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* ── How It Works ── */}
-          <section id="how-it-works" className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
-            <div className="mb-10 text-center">
-              <p className="mb-2 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-white/40">How It Works</p>
-              <h2 className="text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
-                Three steps to your next session
-              </h2>
-            </div>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {workflowSteps.map((step, i) => (
-                <article
-                  key={step.num}
-                  className="relative rounded-[1.8rem] border border-white/10 bg-[linear-gradient(145deg,rgba(255,255,255,0.05),rgba(0,0,0,0.18))] p-7 backdrop-blur-2xl"
-                >
-                  {i < workflowSteps.length - 1 && (
-                    <div className="absolute right-0 top-1/2 hidden -translate-y-1/2 translate-x-1/2 md:block">
-                      <div className="flex h-7 w-7 items-center justify-center rounded-full border border-white/14 bg-[#090f1e] text-white/40">
-                        <span className="material-symbols-outlined text-sm">chevron_right</span>
-                      </div>
-                    </div>
-                  )}
-                  <div className="mb-5 flex items-center gap-3">
-                    <span className="text-[0.64rem] font-bold uppercase tracking-[0.32em] text-white/28">{step.num}</span>
-                    <div className="h-px flex-1 bg-white/10" />
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/12 bg-white/[0.06] text-white/70">
-                      <span className="material-symbols-outlined text-lg">{step.icon}</span>
-                    </div>
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold text-white">{step.title}</h3>
-                  <p className="text-sm leading-7 text-white/52">{step.body}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          {/* ── Tracking / Results ── */}
-          <section id="tracking" className="mx-auto w-full max-w-7xl px-6 py-16 lg:px-10">
-            <div className="overflow-hidden rounded-[2.2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(99,102,241,0.12),rgba(139,92,246,0.06)_50%,rgba(255,255,255,0.04))] p-8 backdrop-blur-3xl lg:p-12">
-              <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
-                <div className="max-w-2xl">
-                  <p className="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-white/40">Progress Tracking</p>
-                  <h2 className="text-3xl font-black tracking-[-0.04em] text-white sm:text-4xl">
-                    See every rep of your progress
-                  </h2>
-                  <p className="mt-5 text-base leading-7 text-white/55">
-                    The dashboard shows your current streak, weekly goals, total sessions, and monthly hours — so you always know where you stand.
-                  </p>
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <Link
-                      href="/signup"
-                      className="inline-flex items-center gap-2 rounded-full bg-indigo-500 px-7 py-3 text-sm font-bold text-white shadow-[0_12px_30px_rgba(99,102,241,0.3)] transition hover:bg-indigo-400"
-                    >
-                      Start Tracking Free
-                      <span className="material-symbols-outlined text-base">north_east</span>
-                    </Link>
-                    <Link
-                      href="/login"
-                      className="inline-flex items-center rounded-full border border-white/14 bg-white/[0.05] px-7 py-3 text-sm font-semibold text-white/80 backdrop-blur-xl transition hover:border-white/28 hover:bg-white/[0.09]"
-                    >
-                      Sign In
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="grid shrink-0 grid-cols-2 gap-3 lg:w-[22rem]">
-                  {[
-                    { icon: "local_fire_department", label: "Current Streak", value: "Track it" },
-                    { icon: "emoji_events", label: "Weekly Goal", value: "4 sessions" },
-                    { icon: "history", label: "All Sessions", value: "Every log" },
-                    { icon: "favorite", label: "Favorites", value: "Save any" },
-                  ].map((item) => (
-                    <div
-                      key={item.label}
-                      className="rounded-[1.4rem] border border-white/10 bg-black/20 p-4"
-                    >
-                      <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-300">
-                        <span className="material-symbols-outlined filled text-base">{item.icon}</span>
-                      </div>
-                      <p className="text-xs font-medium text-white/38">{item.label}</p>
-                      <p className="mt-1 text-sm font-bold text-white">{item.value}</p>
-                    </div>
-                  ))}
+                {/* Artwork footer */}
+                <div className="gallery-artwork-footer">
+                  <span className="gallery-label">Generated · 5 exercises</span>
+                  <span className="gallery-artwork-cta">Start →</span>
                 </div>
               </div>
-            </div>
-          </section>
-        </main>
 
-        <footer className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-3 border-t border-white/[0.06] px-6 py-8 sm:flex-row lg:px-10">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white overflow-hidden">
-              <Image src="/logo.png" alt="WorkoutNow" width={28} height={28} className="object-contain" />
+              {/* Caption */}
+              <div className="gallery-artwork-caption">
+                <span>WorkoutNow Generator</span>
+                <span>{new Date().getFullYear()}</span>
+              </div>
             </div>
-            <span className="text-sm font-bold text-white/60">WorkoutNow</span>
           </div>
-          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-white/28">
-            &copy; {new Date().getFullYear()} — Workout generator &amp; tracker
-          </p>
-          <div className="flex items-center gap-4">
-            <Link href="/login" className="text-xs text-white/38 hover:text-white/70 transition">Sign In</Link>
-            <Link href="/signup" className="text-xs text-white/38 hover:text-white/70 transition">Sign Up</Link>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            MARQUEE TICKER
+        ═══════════════════════════════════════════════════ */}
+        <div className="gallery-ticker-wrap">
+          <div className="gallery-ticker">
+            {Array.from({ length: 4 }).flatMap((_, rep) =>
+              TICKER_ITEMS.map((t) => (
+                <span key={`${t}-${rep}`} className="gallery-ticker-item">
+                  {t}
+                  <span className="gallery-ticker-sep">◆</span>
+                </span>
+              ))
+            )}
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════════════════
+            COLLECTION — Features
+        ═══════════════════════════════════════════════════ */}
+        <section id="collection" className="gallery-section gallery-container">
+          <div className="gallery-section-header">
+            <div>
+              <div className="gallery-section-label">The Collection</div>
+              <h2 className="gallery-h2">Features</h2>
+            </div>
+            <span className="gallery-section-count">03 works</span>
+          </div>
+
+          <div className="gallery-grid-3">
+            {COLLECTION.map((card) => (
+              <article key={card.no} className="gallery-card">
+                <div className="gallery-card-top">
+                  <span className="gallery-label">{card.no}</span>
+                  <span
+                    className="material-symbols-outlined"
+                    style={{ fontSize: "1.1rem", color: "rgba(99,102,241,0.65)" }}
+                  >
+                    {card.icon}
+                  </span>
+                </div>
+                <div className="gallery-card-rule" />
+                <h3 className="gallery-card-title">{card.title}</h3>
+                <p className="gallery-card-body">{card.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            EXHIBITION — How It Works
+        ═══════════════════════════════════════════════════ */}
+        <section id="exhibition" className="gallery-section-bordered gallery-container">
+          <div className="gallery-exhibition-grid">
+
+            {/* Sticky label */}
+            <div className="gallery-exhibition-label">
+              <div className="gallery-section-label">The Exhibition</div>
+              <h2 className="gallery-h2">
+                How it<br />works.
+              </h2>
+              <p className="gallery-exhibition-sub">
+                Three deliberate actions between you and your next session.
+              </p>
+            </div>
+
+            {/* Steps */}
+            <div>
+              {EXHIBITION.map((step, i) => (
+                <div
+                  key={step.no}
+                  className={`gallery-step${i < EXHIBITION.length - 1 ? " gallery-step-border" : ""}`}
+                >
+                  <div className="gallery-step-no">{step.no}</div>
+                  <div>
+                    <div className="gallery-step-tag">{step.tag}</div>
+                    <h3 className="gallery-step-title">{step.title}</h3>
+                    <p className="gallery-step-body">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            ARCHIVE — Progress / CTA
+        ═══════════════════════════════════════════════════ */}
+        <section id="archive" className="gallery-section-bordered gallery-container">
+          <div className="gallery-archive-panel">
+            {/* Ghost number */}
+            <div className="gallery-archive-ghost" aria-hidden>∞</div>
+
+            <div className="gallery-archive-inner">
+              {/* Copy */}
+              <div>
+                <div className="gallery-section-label">The Archive</div>
+                <h2 className="gallery-h2">
+                  See every rep<br />of your progress.
+                </h2>
+                <p className="gallery-archive-body">
+                  Streak counters, weekly targets, total sessions, and monthly
+                  volume — all rendered in a single, curated dashboard.
+                </p>
+                <div className="gallery-cta-row">
+                  <Link href="/signup" className="gallery-cta-primary">
+                    Start Free
+                    <span className="material-symbols-outlined gallery-btn-icon">north_east</span>
+                  </Link>
+                  <Link href="/login" className="gallery-cta-outline">Sign In</Link>
+                </div>
+              </div>
+
+              {/* Stats grid */}
+              <div className="gallery-archive-cards">
+                {ARCHIVE_CARDS.map((item) => (
+                  <div key={item.label} className="gallery-archive-card">
+                    <span
+                      className="material-symbols-outlined filled"
+                      style={{ fontSize: "1.1rem", color: "rgba(99,102,241,0.7)", display: "block", marginBottom: "0.75rem" }}
+                    >
+                      {item.icon}
+                    </span>
+                    <p className="gallery-archive-card-label">{item.label}</p>
+                    <p className="gallery-archive-card-val">{item.val}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════
+            FOOTER
+        ═══════════════════════════════════════════════════ */}
+        <footer className="gallery-footer-wrap">
+          <div className="gallery-container gallery-footer">
+            <div className="gallery-footer-logo">
+              <div className="gallery-footer-icon">
+                <Image src="/logo.png" alt="WorkoutNow" width={24} height={24} className="object-contain" />
+              </div>
+              <span className="gallery-footer-name">WorkoutNow</span>
+            </div>
+
+            <p className="gallery-footer-copy">
+              © {new Date().getFullYear()} — Free &amp; Open Source
+            </p>
+
+            <div className="gallery-footer-links">
+              <Link href="/login"  className="gallery-footer-link">Sign In</Link>
+              <Link href="/signup" className="gallery-footer-link">Sign Up</Link>
+            </div>
           </div>
         </footer>
       </div>
+
+      {/* ── Scoped styles ── */}
+      <style>{`
+        /* Reset & root */
+        .gallery-root {
+          min-height: 100vh;
+          overflow-x: hidden;
+          background: #080808;
+          color: #eeeeee;
+          font-family: 'Inter', sans-serif;
+        }
+
+        /* Ambient glow */
+        .gallery-glow {
+          position: fixed;
+          inset: 0;
+          pointer-events: none;
+          z-index: 0;
+          background: radial-gradient(ellipse 80% 55% at 50% -5%, rgba(99,102,241,0.09) 0%, transparent 65%);
+        }
+
+        /* Layout helpers */
+        .gallery-container {
+          max-width: 1280px;
+          margin-left: auto;
+          margin-right: auto;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+        @media (min-width: 1024px) {
+          .gallery-container { padding-left: 2.5rem; padding-right: 2.5rem; }
+        }
+
+        /* ── NAVBAR ── */
+        .gallery-header {
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          background: rgba(8,8,8,0.88);
+          backdrop-filter: blur(20px);
+          -webkit-backdrop-filter: blur(20px);
+        }
+        .gallery-nav-inner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 56px;
+        }
+        .gallery-logo {
+          display: flex;
+          align-items: center;
+          gap: 0.625rem;
+          text-decoration: none;
+        }
+        .gallery-logo-icon {
+          width: 30px; height: 30px;
+          display: flex; align-items: center; justify-content: center;
+          border-radius: 8px;
+          background: #fff;
+          overflow: hidden;
+          box-shadow: 0 0 16px rgba(255,255,255,0.07);
+        }
+        .gallery-logo-text {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.875rem;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          color: #eeeeee;
+        }
+        .gallery-nav-links {
+          display: none;
+          align-items: center;
+          gap: 2.5rem;
+        }
+        @media (min-width: 1024px) { .gallery-nav-links { display: flex; } }
+        .gallery-nav-link {
+          font-size: 0.7rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.42);
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        .gallery-nav-link:hover { color: #eeeeee; }
+        .gallery-nav-actions {
+          display: flex; align-items: center; gap: 0.5rem;
+        }
+        .gallery-btn-ghost {
+          display: none;
+          font-size: 0.7rem;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.42);
+          padding: 0.35rem 0.875rem;
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          text-decoration: none;
+          transition: color 0.2s, border-color 0.2s;
+        }
+        @media (min-width: 640px) { .gallery-btn-ghost { display: inline-flex; } }
+        .gallery-btn-ghost:hover { color: #fff; border-color: rgba(255,255,255,0.24); }
+        .gallery-btn-solid {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.7rem; font-weight: 600;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          color: #080808; background: #eeeeee;
+          padding: 0.35rem 1rem;
+          border-radius: 2px;
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .gallery-btn-solid:hover { background: #ffffff; }
+        .gallery-btn-icon { font-size: 0.8rem !important; line-height: 1 !important; }
+        .gallery-theme-toggle {
+          background: transparent !important;
+          border: 1px solid rgba(255,255,255,0.1) !important;
+          border-radius: 2px !important;
+          color: rgba(255,255,255,0.45) !important;
+          box-shadow: none !important;
+        }
+        .gallery-theme-toggle:hover {
+          background: rgba(255,255,255,0.06) !important;
+          color: #fff !important;
+        }
+
+        /* ── HERO ── */
+        .gallery-hero {
+          min-height: calc(100vh - 56px);
+          display: flex;
+          align-items: center;
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+        .gallery-hero-grid {
+          display: grid;
+          gap: 3rem;
+          align-items: center;
+          width: 100%;
+        }
+        @media (min-width: 1024px) {
+          .gallery-hero-grid { grid-template-columns: 1fr 420px; gap: 5rem; }
+        }
+        .gallery-eyebrow {
+          display: flex; align-items: center; gap: 1rem;
+          font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase;
+          color: rgba(255,255,255,0.28);
+          margin-bottom: 2rem;
+        }
+        .gallery-eyebrow-line {
+          display: inline-block; width: 2rem; height: 1px;
+          background: rgba(255,255,255,0.28);
+          flex-shrink: 0;
+        }
+        .gallery-h1 {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: clamp(3.5rem, 8vw, 7rem);
+          font-weight: 800;
+          line-height: 0.9;
+          letter-spacing: -0.05em;
+          color: #eeeeee;
+        }
+        .gallery-h1-outline {
+          -webkit-text-stroke: 1px rgba(255,255,255,0.22);
+          color: transparent;
+        }
+        .gallery-accent-rule {
+          width: 2.5rem; height: 2px;
+          background: #6366f1;
+          margin: 2.25rem 0;
+        }
+        .gallery-hero-body {
+          max-width: 44ch;
+          font-size: 1rem; line-height: 1.85;
+          color: rgba(255,255,255,0.44);
+        }
+        .gallery-cta-row {
+          display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
+          margin-top: 2.25rem;
+        }
+        .gallery-cta-primary {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          background: #6366f1; color: #fff;
+          padding: 0.75rem 1.875rem;
+          border-radius: 2px;
+          font-size: 0.775rem; font-weight: 700;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          text-decoration: none;
+          box-shadow: 0 0 40px rgba(99,102,241,0.22);
+          transition: background 0.2s, box-shadow 0.2s;
+        }
+        .gallery-cta-primary:hover {
+          background: #7577f2;
+          box-shadow: 0 0 60px rgba(99,102,241,0.42);
+        }
+        .gallery-cta-outline {
+          display: inline-flex; align-items: center; gap: 0.5rem;
+          border: 1px solid rgba(255,255,255,0.12);
+          color: rgba(255,255,255,0.58);
+          padding: 0.75rem 1.875rem;
+          border-radius: 2px;
+          font-size: 0.775rem; font-weight: 600;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          text-decoration: none;
+          transition: color 0.2s, border-color 0.2s;
+        }
+        .gallery-cta-outline:hover { color: #fff; border-color: rgba(255,255,255,0.28); }
+        .gallery-stats {
+          display: flex; gap: 0;
+          border-top: 1px solid rgba(255,255,255,0.07);
+          padding-top: 2rem;
+          margin-top: 2.75rem;
+          max-width: 22rem;
+        }
+        .gallery-stat { padding-right: 2rem; }
+        .gallery-stat-val {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 2rem; font-weight: 800;
+          letter-spacing: -0.04em; line-height: 1;
+        }
+        .gallery-stat-sub {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.28);
+          margin-top: 0.4rem;
+        }
+
+        /* ── ARTWORK PANEL ── */
+        .gallery-artwork-wrap { display: none; }
+        @media (min-width: 1024px) { .gallery-artwork-wrap { display: block; } }
+        .gallery-artwork {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+        }
+        .gallery-artwork-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .gallery-artwork-dots { display: flex; gap: 5px; align-items: center; }
+        .gallery-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .gallery-dot-accent  { background: #6366f1; }
+        .gallery-dot-dim     { background: rgba(255,255,255,0.15); }
+        .gallery-dot-ghost   { background: rgba(255,255,255,0.06); }
+        .gallery-exercise-row {
+          display: flex; align-items: center; justify-content: space-between;
+          padding: 0.875rem 1.5rem;
+          transition: background 0.15s;
+          cursor: default;
+        }
+        .gallery-exercise-row:hover { background: rgba(255,255,255,0.03); }
+        .gallery-exercise-row-border { border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .gallery-exercise-left { display: flex; align-items: center; gap: 0.875rem; }
+        .gallery-exercise-num {
+          font-size: 0.58rem; letter-spacing: 0.12em;
+          color: rgba(255,255,255,0.2); min-width: 1.2rem;
+          font-variant-numeric: tabular-nums;
+        }
+        .gallery-exercise-name {
+          font-size: 0.72rem; letter-spacing: 0.07em;
+          text-transform: uppercase; font-weight: 500;
+          color: rgba(255,255,255,0.85);
+        }
+        .gallery-exercise-detail {
+          font-size: 0.68rem; letter-spacing: 0.08em;
+          color: rgba(255,255,255,0.32);
+          font-variant-numeric: tabular-nums;
+        }
+        .gallery-artwork-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+        }
+        .gallery-artwork-cta {
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #6366f1;
+          padding: 0.22rem 0.6rem;
+          border: 1px solid rgba(99,102,241,0.35);
+          border-radius: 1px;
+        }
+        .gallery-artwork-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.75rem;
+          font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: rgba(255,255,255,0.18);
+        }
+
+        /* ── TICKER ── */
+        .gallery-ticker-wrap {
+          border-top: 1px solid rgba(255,255,255,0.06);
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          overflow: hidden;
+          padding: 0.875rem 0;
+        }
+        .gallery-ticker {
+          display: flex; gap: 0; width: max-content; white-space: nowrap;
+          animation: gallery-marquee 28s linear infinite;
+        }
+        .gallery-ticker-item {
+          font-size: 0.62rem; letter-spacing: 0.3em;
+          text-transform: uppercase; color: rgba(255,255,255,0.2);
+          user-select: none; padding-right: 2rem;
+        }
+        .gallery-ticker-sep { color: rgba(99,102,241,0.5); margin: 0 0.5rem; }
+        @keyframes gallery-marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        /* ── SHARED SECTION ── */
+        .gallery-section {
+          padding-top: 5.5rem; padding-bottom: 5.5rem;
+        }
+        .gallery-section-bordered {
+          border-top: 1px solid rgba(255,255,255,0.06);
+          padding-top: 5.5rem; padding-bottom: 5.5rem;
+        }
+        .gallery-section-header {
+          display: flex; align-items: flex-end; justify-content: space-between;
+          margin-bottom: 3.5rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+        .gallery-section-label {
+          font-size: 0.6rem; letter-spacing: 0.35em;
+          text-transform: uppercase; color: rgba(255,255,255,0.26);
+          margin-bottom: 0.625rem;
+        }
+        .gallery-section-count {
+          font-size: 0.6rem; letter-spacing: 0.2em;
+          text-transform: uppercase; color: rgba(255,255,255,0.18);
+        }
+        .gallery-h2 {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-weight: 800; letter-spacing: -0.04em; line-height: 1;
+          color: #eeeeee;
+        }
+        .gallery-label {
+          font-size: 0.6rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.28);
+        }
+
+        /* ── COLLECTION GRID ── */
+        .gallery-grid-3 {
+          display: grid; gap: 1.25rem;
+        }
+        @media (min-width: 768px) { .gallery-grid-3 { grid-template-columns: repeat(3, 1fr); } }
+        .gallery-card {
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 2px;
+          padding: 2rem;
+          background: rgba(255,255,255,0.018);
+          transition: border-color 0.2s, background 0.2s;
+          cursor: default;
+        }
+        .gallery-card:hover {
+          border-color: rgba(255,255,255,0.13);
+          background: rgba(255,255,255,0.03);
+        }
+        .gallery-card-top {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-bottom: 1.75rem;
+        }
+        .gallery-card-rule {
+          width: 1.5rem; height: 2px;
+          background: rgba(99,102,241,0.5);
+          margin-bottom: 1.5rem;
+        }
+        .gallery-card-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.125rem; font-weight: 700;
+          letter-spacing: -0.02em; color: #eeeeee;
+          margin-bottom: 0.625rem;
+        }
+        .gallery-card-body {
+          font-size: 0.875rem; line-height: 1.8;
+          color: rgba(255,255,255,0.44);
+        }
+
+        /* ── EXHIBITION ── */
+        .gallery-exhibition-grid {
+          display: grid; gap: 4rem; align-items: start;
+        }
+        @media (min-width: 1024px) {
+          .gallery-exhibition-grid { grid-template-columns: 1fr 2fr; }
+          .gallery-exhibition-label { position: sticky; top: 5rem; }
+        }
+        .gallery-exhibition-sub {
+          font-size: 0.875rem; line-height: 1.85;
+          color: rgba(255,255,255,0.38);
+          margin-top: 1.25rem;
+          max-width: 30ch;
+        }
+        .gallery-step {
+          display: grid;
+          grid-template-columns: 3rem 1fr;
+          gap: 1.5rem;
+        }
+        .gallery-step-border {
+          padding-bottom: 3rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          margin-bottom: 3rem;
+        }
+        .gallery-step-no {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.68rem; letter-spacing: 0.18em;
+          color: rgba(255,255,255,0.2); text-transform: uppercase;
+          padding-top: 0.125rem;
+        }
+        .gallery-step-tag {
+          font-size: 0.58rem; letter-spacing: 0.3em;
+          text-transform: uppercase; color: rgba(99,102,241,0.65);
+          margin-bottom: 0.625rem;
+        }
+        .gallery-step-title {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 1.375rem; font-weight: 700;
+          letter-spacing: -0.03em; color: #eeeeee;
+          margin-bottom: 0.625rem;
+        }
+        .gallery-step-body {
+          font-size: 0.9rem; line-height: 1.85;
+          color: rgba(255,255,255,0.44); max-width: 52ch;
+        }
+
+        /* ── ARCHIVE ── */
+        .gallery-archive-panel {
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 2px;
+          padding: 3.5rem;
+          background: linear-gradient(135deg, rgba(99,102,241,0.07) 0%, rgba(139,92,246,0.03) 50%, transparent 100%);
+          position: relative; overflow: hidden;
+        }
+        @media (max-width: 640px) { .gallery-archive-panel { padding: 2rem; } }
+        .gallery-archive-ghost {
+          position: absolute; right: 1rem; top: 50%;
+          transform: translateY(-50%);
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 14rem; font-weight: 900;
+          color: rgba(255,255,255,0.025);
+          letter-spacing: -0.08em; line-height: 1;
+          pointer-events: none; user-select: none;
+        }
+        .gallery-archive-inner {
+          position: relative;
+          display: grid; gap: 3rem; align-items: center;
+        }
+        @media (min-width: 1024px) {
+          .gallery-archive-inner { grid-template-columns: 1fr auto; }
+        }
+        .gallery-archive-body {
+          font-size: 0.9rem; line-height: 1.85;
+          color: rgba(255,255,255,0.44); max-width: 44ch;
+          margin-top: 1.25rem; margin-bottom: 2.5rem;
+        }
+        .gallery-archive-cards {
+          display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+          min-width: 270px;
+        }
+        .gallery-archive-card {
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 2px; padding: 1.25rem;
+          background: rgba(0,0,0,0.25);
+        }
+        .gallery-archive-card-label {
+          font-size: 0.62rem; letter-spacing: 0.1em;
+          text-transform: uppercase; color: rgba(255,255,255,0.28);
+          margin-bottom: 0.25rem;
+        }
+        .gallery-archive-card-val {
+          font-size: 0.875rem; font-weight: 600;
+          color: rgba(255,255,255,0.78);
+        }
+
+        /* ── FOOTER ── */
+        .gallery-footer-wrap {
+          border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .gallery-footer {
+          display: flex; flex-direction: column;
+          align-items: center; justify-content: space-between;
+          gap: 1rem; padding-top: 2rem; padding-bottom: 2rem;
+        }
+        @media (min-width: 640px) { .gallery-footer { flex-direction: row; } }
+        .gallery-footer-logo { display: flex; align-items: center; gap: 0.625rem; }
+        .gallery-footer-icon {
+          width: 26px; height: 26px;
+          display: flex; align-items: center; justify-content: center;
+          border-radius: 6px; background: #fff; overflow: hidden;
+        }
+        .gallery-footer-name {
+          font-size: 0.8rem; font-weight: 700;
+          color: rgba(255,255,255,0.45); letter-spacing: -0.01em;
+        }
+        .gallery-footer-copy {
+          font-size: 0.6rem; letter-spacing: 0.25em;
+          text-transform: uppercase; color: rgba(255,255,255,0.18);
+        }
+        .gallery-footer-links { display: flex; align-items: center; gap: 1.5rem; }
+        .gallery-footer-link {
+          font-size: 0.68rem; letter-spacing: 0.1em;
+          text-transform: uppercase; color: rgba(255,255,255,0.28);
+          text-decoration: none; transition: color 0.2s;
+        }
+        .gallery-footer-link:hover { color: rgba(255,255,255,0.65); }
+      `}</style>
     </div>
   );
 }
