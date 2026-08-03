@@ -1,0 +1,208 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - img
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e5]:
+          - link "WorkoutNow WorkoutNow" [ref=e6] [cursor=pointer]:
+            - /url: /
+            - img "WorkoutNow" [ref=e8]
+            - generic [ref=e9]: WorkoutNow
+          - generic [ref=e10]:
+            - link "Sign In" [ref=e11] [cursor=pointer]:
+              - /url: /login
+            - link "Get Started north_east" [ref=e12] [cursor=pointer]:
+              - /url: /signup
+              - text: Get Started
+              - generic [ref=e13]: north_east
+            - button "Toggle theme" [ref=e14] [cursor=pointer]:
+              - img [ref=e15]
+      - generic [ref=e17]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: Exhibition N°001
+          - heading "Your workout, built for you." [level=1] [ref=e22]:
+            - text: Your
+            - text: workout,
+            - text: built for you.
+          - paragraph [ref=e24]: Generate sessions from your equipment and target muscles. Track favorites, history, streaks, and goals — all in one place.
+          - generic [ref=e25]:
+            - link "Begin Training north_east" [ref=e26] [cursor=pointer]:
+              - /url: /signup
+              - text: Begin Training
+              - generic [ref=e27]: north_east
+            - link "View Source" [ref=e28] [cursor=pointer]:
+              - /url: https://github.com/youssefsina/WorkoutNow
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: "3"
+              - generic [ref=e32]: steps
+            - generic [ref=e33]:
+              - generic [ref=e34]: ∞
+              - generic [ref=e35]: sessions
+            - generic [ref=e36]:
+              - generic [ref=e37]: Free
+              - generic [ref=e38]: always
+        - generic [ref=e41]: Scroll
+      - generic [ref=e43]:
+        - generic [ref=e44]: GENERATE WORKOUTS◆
+        - generic [ref=e45]: TRACK PROGRESS◆
+        - generic [ref=e46]: FAVORITE EXERCISES◆
+        - generic [ref=e47]: BUILD CONSISTENCY◆
+        - generic [ref=e48]: TRAIN SMARTER◆
+        - generic [ref=e49]: LOG SESSIONS◆
+        - generic [ref=e50]: GENERATE WORKOUTS◆
+        - generic [ref=e51]: TRACK PROGRESS◆
+        - generic [ref=e52]: FAVORITE EXERCISES◆
+        - generic [ref=e53]: BUILD CONSISTENCY◆
+        - generic [ref=e54]: TRAIN SMARTER◆
+        - generic [ref=e55]: LOG SESSIONS◆
+        - generic [ref=e56]: GENERATE WORKOUTS◆
+        - generic [ref=e57]: TRACK PROGRESS◆
+        - generic [ref=e58]: FAVORITE EXERCISES◆
+        - generic [ref=e59]: BUILD CONSISTENCY◆
+        - generic [ref=e60]: TRAIN SMARTER◆
+        - generic [ref=e61]: LOG SESSIONS◆
+        - generic [ref=e62]: GENERATE WORKOUTS◆
+        - generic [ref=e63]: TRACK PROGRESS◆
+        - generic [ref=e64]: FAVORITE EXERCISES◆
+        - generic [ref=e65]: BUILD CONSISTENCY◆
+        - generic [ref=e66]: TRAIN SMARTER◆
+        - generic [ref=e67]: LOG SESSIONS◆
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e72]: Now Showing
+            - heading "The Catalogue" [level=2] [ref=e73]
+          - generic [ref=e74]: 03 works
+        - generic [ref=e75]:
+          - article [ref=e76]:
+            - generic [ref=e77]:
+              - generic [ref=e78]: PUSH
+              - img [ref=e79]
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - heading "Push" [level=3] [ref=e92]
+                - paragraph [ref=e93]: Upper Strength
+              - generic [ref=e94]: Vol. I
+            - generic [ref=e95]: Chest · Shoulders · Triceps
+          - article [ref=e96]:
+            - generic [ref=e97]:
+              - generic [ref=e98]: PULL
+              - img [ref=e99]
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - heading "Pull" [level=3] [ref=e111]
+                - paragraph [ref=e112]: Back Depth
+              - generic [ref=e113]: Vol. II
+            - generic [ref=e114]: Back · Biceps · Rear Delts
+          - article [ref=e115]:
+            - generic [ref=e116]:
+              - generic [ref=e117]: LEGS
+              - img [ref=e118]
+            - generic [ref=e125]:
+              - generic [ref=e126]:
+                - heading "Legs" [level=3] [ref=e127]
+                - paragraph [ref=e128]: Foundation
+              - generic [ref=e129]: Vol. III
+            - generic [ref=e130]: Quads · Hamstrings · Glutes
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - generic [ref=e134]: The Collection
+            - heading "Features" [level=2] [ref=e135]
+          - generic [ref=e136]: 03 works
+        - generic [ref=e137]:
+          - article [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e140]: — 01
+              - generic [ref=e141]: auto_awesome
+            - heading "Smart Generator" [level=3] [ref=e143]
+            - paragraph [ref=e144]: Select your equipment and target muscles. A curated workout assembles in seconds — sets, reps, and rest periods included.
+          - article [ref=e145]:
+            - generic [ref=e146]:
+              - generic [ref=e147]: — 02
+              - generic [ref=e148]: history
+            - heading "Session Archive" [level=3] [ref=e150]
+            - paragraph [ref=e151]: Every completed session is cataloged automatically. Mark favorites. Return to what worked.
+          - article [ref=e152]:
+            - generic [ref=e153]:
+              - generic [ref=e154]: — 03
+              - generic [ref=e155]: monitoring
+            - heading "Progress Gallery" [level=3] [ref=e157]
+            - paragraph [ref=e158]: Streak counters, weekly targets, total volume, and monthly hours — rendered in one clean dashboard.
+      - generic [ref=e160]:
+        - generic [ref=e161]:
+          - generic [ref=e162]: The Exhibition
+          - heading "How it works." [level=2] [ref=e163]:
+            - text: How it
+            - text: works.
+          - paragraph [ref=e164]: Three deliberate actions between you and your next session.
+        - generic [ref=e165]:
+          - generic [ref=e166]:
+            - generic [ref=e167]: I
+            - generic [ref=e168]:
+              - generic [ref=e169]: Equipment
+              - heading "Select Equipment" [level=3] [ref=e170]
+              - paragraph [ref=e171]: Choose the apparatus available to you — barbells, machines, cables, or bodyweight. Your choice defines the palette.
+          - generic [ref=e172]:
+            - generic [ref=e173]: II
+            - generic [ref=e174]:
+              - generic [ref=e175]: Muscles
+              - heading "Target Muscles" [level=3] [ref=e176]
+              - paragraph [ref=e177]: Define the muscle groups you want to develop. Precision over generality. Every session has an intention.
+          - generic [ref=e178]:
+            - generic [ref=e179]: III
+            - generic [ref=e180]:
+              - generic [ref=e181]: Session
+              - heading "Generate & Train" [level=3] [ref=e182]
+              - paragraph [ref=e183]: Review the curated exercise list. Begin the session. Your performance is logged — permanently.
+      - generic [ref=e185]:
+        - generic: ∞
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - generic [ref=e188]: The Archive
+            - heading "See every rep of your progress." [level=2] [ref=e189]:
+              - text: See every rep
+              - text: of your progress.
+            - paragraph [ref=e190]: Streak counters, weekly targets, total sessions, and monthly volume — all rendered in a single, curated dashboard.
+            - generic [ref=e191]:
+              - link "Start Free north_east" [ref=e192] [cursor=pointer]:
+                - /url: /signup
+                - text: Start Free
+                - generic [ref=e193]: north_east
+              - link "Sign In" [ref=e194] [cursor=pointer]:
+                - /url: /login
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e197]: local_fire_department
+              - paragraph [ref=e198]: Current Streak
+              - paragraph [ref=e199]: Track it
+            - generic [ref=e200]:
+              - generic [ref=e201]: emoji_events
+              - paragraph [ref=e202]: Weekly Goal
+              - paragraph [ref=e203]: 4 sessions
+            - generic [ref=e204]:
+              - generic [ref=e205]: history
+              - paragraph [ref=e206]: All Sessions
+              - paragraph [ref=e207]: Every log
+            - generic [ref=e208]:
+              - generic [ref=e209]: favorite
+              - paragraph [ref=e210]: Favorites
+              - paragraph [ref=e211]: Save any
+      - contentinfo [ref=e212]:
+        - generic [ref=e213]:
+          - generic [ref=e214]:
+            - img "WorkoutNow" [ref=e216]
+            - generic [ref=e217]: WorkoutNow
+          - paragraph [ref=e218]: © 2026 — Free & Open Source
+          - generic [ref=e219]:
+            - link "Sign In" [ref=e220] [cursor=pointer]:
+              - /url: /login
+            - link "Sign Up" [ref=e221] [cursor=pointer]:
+              - /url: /signup
+  - alert [ref=e222]
+  - generic [ref=e225] [cursor=pointer]:
+    - img [ref=e226]
+    - generic [ref=e228]: 1 error
+    - button "Hide Errors" [ref=e229]:
+      - img [ref=e230]

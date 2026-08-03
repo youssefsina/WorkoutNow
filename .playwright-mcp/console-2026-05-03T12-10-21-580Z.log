@@ -1,0 +1,1044 @@
+[    3059ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[    3597ms] [ERROR] Warning: Text content did not match. Server: "%s" Client: "%s"%s 
+        .specimen-wrap { display: none; }
+        @media (min-width: 1024px) { .specimen-wrap { display: block; } }
+
+        .specimen {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+          position: relative;
+          transition: border-color 0.25s, transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .specimen:hover { border-color: rgba(255,255,255,0.18); }
+
+        /* corner crosses (gallery feel) */
+        .specimen::before,
+        .specimen::after {
+          content: &#x27;&#x27;;
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background:
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 100% 1px no-repeat,
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 1px 100% no-repeat;
+          pointer-events: none;
+        }
+        .specimen::before { top: -4px; left: -4px; }
+        .specimen::after  { bottom: -4px; right: -4px; }
+
+        .specimen-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .specimen-dots { display: flex; gap: 5px; align-items: center; }
+        .specimen-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .specimen-dot-accent { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.6); }
+        .specimen-dot-dim    { background: rgba(255,255,255,0.18); }
+        .specimen-dot-ghost  { background: rgba(255,255,255,0.06); }
+
+        .specimen-art {
+          padding: 1.5rem 1.5rem 0.75rem;
+          background:
+            linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 70%);
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .specimen-art-svg {
+          width: 100%; height: auto; display: block;
+        }
+
+        .specimen-meta {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: grid; gap: 0.5rem;
+        }
+        .specimen-meta-row {
+          display: flex; align-items: baseline; justify-content: space-between;
+          gap: 1rem;
+        }
+        .specimen-meta-label {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.32);
+        }
+        .specimen-meta-value {
+          font-family: &#x27;Space Grotesk&#x27;, sans-serif;
+          font-size: 0.78rem; letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.82);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .specimen-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .specimen-footer:hover { background: rgba(99,102,241,0.1); }
+        .specimen-cta {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; font-weight: 600;
+          padding: 0.28rem 0.7rem;
+          border: 1px solid rgba(99,102,241,0.6);
+          background: rgba(99,102,241,0.15);
+          border-radius: 1px;
+          transition: all 0.2s;
+        }
+        .specimen-footer:hover .specimen-cta {
+          background: #6366f1;
+          border-color: #6366f1;
+          box-shadow: 0 0 24px rgba(99,102,241,0.4);
+        }
+
+        .specimen-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.875rem;
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          padding: 0 0.25rem;
+        }
+       
+        .specimen-wrap { display: none; }
+        @media (min-width: 1024px) { .specimen-wrap { display: block; } }
+
+        .specimen {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+          position: relative;
+          transition: border-color 0.25s, transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .specimen:hover { border-color: rgba(255,255,255,0.18); }
+
+        /* corner crosses (gallery feel) */
+        .specimen::before,
+        .specimen::after {
+          content: '';
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background:
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 100% 1px no-repeat,
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 1px 100% no-repeat;
+          pointer-events: none;
+        }
+        .specimen::before { top: -4px; left: -4px; }
+        .specimen::after  { bottom: -4px; right: -4px; }
+
+        .specimen-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .specimen-dots { display: flex; gap: 5px; align-items: center; }
+        .specimen-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .specimen-dot-accent { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.6); }
+        .specimen-dot-dim    { background: rgba(255,255,255,0.18); }
+        .specimen-dot-ghost  { background: rgba(255,255,255,0.06); }
+
+        .specimen-art {
+          padding: 1.5rem 1.5rem 0.75rem;
+          background:
+            linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 70%);
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .specimen-art-svg {
+          width: 100%; height: auto; display: block;
+        }
+
+        .specimen-meta {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: grid; gap: 0.5rem;
+        }
+        .specimen-meta-row {
+          display: flex; align-items: baseline; justify-content: space-between;
+          gap: 1rem;
+        }
+        .specimen-meta-label {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.32);
+        }
+        .specimen-meta-value {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.78rem; letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.82);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .specimen-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .specimen-footer:hover { background: rgba(99,102,241,0.1); }
+        .specimen-cta {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; font-weight: 600;
+          padding: 0.28rem 0.7rem;
+          border: 1px solid rgba(99,102,241,0.6);
+          background: rgba(99,102,241,0.15);
+          border-radius: 1px;
+          transition: all 0.2s;
+        }
+        .specimen-footer:hover .specimen-cta {
+          background: #6366f1;
+          border-color: #6366f1;
+          box-shadow: 0 0 24px rgba(99,102,241,0.4);
+        }
+
+        .specimen-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.875rem;
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          padding: 0 0.25rem;
+        }
+       
+    at style
+    at div
+    at SpecimenCard
+    at div
+    at section
+    at div
+    at div
+    at HomePage (webpack-internal:///(app-pages-browser)/./src/app/page.tsx:95:66)
+    at ClientPageRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/client-page.js:14:11)
+    at InnerLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:243:11)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:349:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at OuterLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:370:11)
+    at ThemeProvider (webpack-internal:///(app-pages-browser)/./src/components/ThemeProvider.tsx:23:11)
+    at body
+    at html
+    at RootLayout (Server)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    3613ms] [ERROR] Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. #document @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[    3695ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3704ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3704ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3706ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3709ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3709ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3710ms] Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at updateHostRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16571:57)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18486:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25464:5)
+    at renderRootSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25419:7)
+    at recoverFromConcurrentError (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24597:20)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24542:26)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[    3801ms] [WARNING] Image with src "/logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[  251887ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  252199ms] [ERROR] Warning: Text content did not match. Server: "%s" Client: "%s"%s 
+        .specimen-wrap { display: none; }
+        @media (min-width: 1024px) { .specimen-wrap { display: block; } }
+
+        .specimen {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+          position: relative;
+          transition: border-color 0.25s, transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .specimen:hover { border-color: rgba(255,255,255,0.18); }
+
+        /* corner crosses (gallery feel) */
+        .specimen::before,
+        .specimen::after {
+          content: &#x27;&#x27;;
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background:
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 100% 1px no-repeat,
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 1px 100% no-repeat;
+          pointer-events: none;
+        }
+        .specimen::before { top: -4px; left: -4px; }
+        .specimen::after  { bottom: -4px; right: -4px; }
+
+        .specimen-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .specimen-dots { display: flex; gap: 5px; align-items: center; }
+        .specimen-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .specimen-dot-accent { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.6); }
+        .specimen-dot-dim    { background: rgba(255,255,255,0.18); }
+        .specimen-dot-ghost  { background: rgba(255,255,255,0.06); }
+
+        .specimen-art {
+          padding: 1.5rem 1.5rem 0.75rem;
+          background:
+            linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 70%);
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .specimen-art-svg {
+          width: 100%; height: auto; display: block;
+        }
+
+        .specimen-meta {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: grid; gap: 0.5rem;
+        }
+        .specimen-meta-row {
+          display: flex; align-items: baseline; justify-content: space-between;
+          gap: 1rem;
+        }
+        .specimen-meta-label {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.32);
+        }
+        .specimen-meta-value {
+          font-family: &#x27;Space Grotesk&#x27;, sans-serif;
+          font-size: 0.78rem; letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.82);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .specimen-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .specimen-footer:hover { background: rgba(99,102,241,0.1); }
+        .specimen-cta {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; font-weight: 600;
+          padding: 0.28rem 0.7rem;
+          border: 1px solid rgba(99,102,241,0.6);
+          background: rgba(99,102,241,0.15);
+          border-radius: 1px;
+          transition: all 0.2s;
+        }
+        .specimen-footer:hover .specimen-cta {
+          background: #6366f1;
+          border-color: #6366f1;
+          box-shadow: 0 0 24px rgba(99,102,241,0.4);
+        }
+
+        .specimen-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.875rem;
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          padding: 0 0.25rem;
+        }
+       
+        .specimen-wrap { display: none; }
+        @media (min-width: 1024px) { .specimen-wrap { display: block; } }
+
+        .specimen {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+          position: relative;
+          transition: border-color 0.25s, transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .specimen:hover { border-color: rgba(255,255,255,0.18); }
+
+        /* corner crosses (gallery feel) */
+        .specimen::before,
+        .specimen::after {
+          content: '';
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background:
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 100% 1px no-repeat,
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 1px 100% no-repeat;
+          pointer-events: none;
+        }
+        .specimen::before { top: -4px; left: -4px; }
+        .specimen::after  { bottom: -4px; right: -4px; }
+
+        .specimen-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .specimen-dots { display: flex; gap: 5px; align-items: center; }
+        .specimen-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .specimen-dot-accent { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.6); }
+        .specimen-dot-dim    { background: rgba(255,255,255,0.18); }
+        .specimen-dot-ghost  { background: rgba(255,255,255,0.06); }
+
+        .specimen-art {
+          padding: 1.5rem 1.5rem 0.75rem;
+          background:
+            linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 70%);
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .specimen-art-svg {
+          width: 100%; height: auto; display: block;
+        }
+
+        .specimen-meta {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: grid; gap: 0.5rem;
+        }
+        .specimen-meta-row {
+          display: flex; align-items: baseline; justify-content: space-between;
+          gap: 1rem;
+        }
+        .specimen-meta-label {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.32);
+        }
+        .specimen-meta-value {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.78rem; letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.82);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .specimen-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .specimen-footer:hover { background: rgba(99,102,241,0.1); }
+        .specimen-cta {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; font-weight: 600;
+          padding: 0.28rem 0.7rem;
+          border: 1px solid rgba(99,102,241,0.6);
+          background: rgba(99,102,241,0.15);
+          border-radius: 1px;
+          transition: all 0.2s;
+        }
+        .specimen-footer:hover .specimen-cta {
+          background: #6366f1;
+          border-color: #6366f1;
+          box-shadow: 0 0 24px rgba(99,102,241,0.4);
+        }
+
+        .specimen-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.875rem;
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          padding: 0 0.25rem;
+        }
+       
+    at style
+    at div
+    at SpecimenCard
+    at div
+    at section
+    at div
+    at div
+    at HomePage (webpack-internal:///(app-pages-browser)/./src/app/page.tsx:95:66)
+    at ClientPageRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/client-page.js:14:11)
+    at InnerLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:243:11)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:349:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at OuterLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:370:11)
+    at ThemeProvider (webpack-internal:///(app-pages-browser)/./src/components/ThemeProvider.tsx:23:11)
+    at body
+    at html
+    at RootLayout (Server)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  252212ms] [ERROR] Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. #document @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  252284ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252286ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252286ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252286ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252287ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252287ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252293ms] Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at updateHostRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16571:57)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18486:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25464:5)
+    at renderRootSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25419:7)
+    at recoverFromConcurrentError (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24597:20)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24542:26)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  252373ms] [WARNING] Image with src "/logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[  267381ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:38559
+[  267594ms] [ERROR] Warning: Text content did not match. Server: "%s" Client: "%s"%s 
+        .specimen-wrap { display: none; }
+        @media (min-width: 1024px) { .specimen-wrap { display: block; } }
+
+        .specimen {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+          position: relative;
+          transition: border-color 0.25s, transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .specimen:hover { border-color: rgba(255,255,255,0.18); }
+
+        /* corner crosses (gallery feel) */
+        .specimen::before,
+        .specimen::after {
+          content: &#x27;&#x27;;
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background:
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 100% 1px no-repeat,
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 1px 100% no-repeat;
+          pointer-events: none;
+        }
+        .specimen::before { top: -4px; left: -4px; }
+        .specimen::after  { bottom: -4px; right: -4px; }
+
+        .specimen-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .specimen-dots { display: flex; gap: 5px; align-items: center; }
+        .specimen-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .specimen-dot-accent { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.6); }
+        .specimen-dot-dim    { background: rgba(255,255,255,0.18); }
+        .specimen-dot-ghost  { background: rgba(255,255,255,0.06); }
+
+        .specimen-art {
+          padding: 1.5rem 1.5rem 0.75rem;
+          background:
+            linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 70%);
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .specimen-art-svg {
+          width: 100%; height: auto; display: block;
+        }
+
+        .specimen-meta {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: grid; gap: 0.5rem;
+        }
+        .specimen-meta-row {
+          display: flex; align-items: baseline; justify-content: space-between;
+          gap: 1rem;
+        }
+        .specimen-meta-label {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.32);
+        }
+        .specimen-meta-value {
+          font-family: &#x27;Space Grotesk&#x27;, sans-serif;
+          font-size: 0.78rem; letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.82);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .specimen-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .specimen-footer:hover { background: rgba(99,102,241,0.1); }
+        .specimen-cta {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; font-weight: 600;
+          padding: 0.28rem 0.7rem;
+          border: 1px solid rgba(99,102,241,0.6);
+          background: rgba(99,102,241,0.15);
+          border-radius: 1px;
+          transition: all 0.2s;
+        }
+        .specimen-footer:hover .specimen-cta {
+          background: #6366f1;
+          border-color: #6366f1;
+          box-shadow: 0 0 24px rgba(99,102,241,0.4);
+        }
+
+        .specimen-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.875rem;
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          padding: 0 0.25rem;
+        }
+       
+        .specimen-wrap { display: none; }
+        @media (min-width: 1024px) { .specimen-wrap { display: block; } }
+
+        .specimen {
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 2px;
+          overflow: hidden;
+          background: rgba(255,255,255,0.015);
+          position: relative;
+          transition: border-color 0.25s, transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+        .specimen:hover { border-color: rgba(255,255,255,0.18); }
+
+        /* corner crosses (gallery feel) */
+        .specimen::before,
+        .specimen::after {
+          content: '';
+          position: absolute;
+          width: 8px;
+          height: 8px;
+          background:
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 100% 1px no-repeat,
+            linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)) center / 1px 100% no-repeat;
+          pointer-events: none;
+        }
+        .specimen::before { top: -4px; left: -4px; }
+        .specimen::after  { bottom: -4px; right: -4px; }
+
+        .specimen-header {
+          padding: 0.875rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+        }
+        .specimen-dots { display: flex; gap: 5px; align-items: center; }
+        .specimen-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .specimen-dot-accent { background: #6366f1; box-shadow: 0 0 8px rgba(99,102,241,0.6); }
+        .specimen-dot-dim    { background: rgba(255,255,255,0.18); }
+        .specimen-dot-ghost  { background: rgba(255,255,255,0.06); }
+
+        .specimen-art {
+          padding: 1.5rem 1.5rem 0.75rem;
+          background:
+            linear-gradient(180deg, rgba(99,102,241,0.04) 0%, transparent 100%),
+            radial-gradient(ellipse 60% 60% at 50% 0%, rgba(99,102,241,0.06) 0%, transparent 70%);
+          border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .specimen-art-svg {
+          width: 100%; height: auto; display: block;
+        }
+
+        .specimen-meta {
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid rgba(255,255,255,0.06);
+          display: grid; gap: 0.5rem;
+        }
+        .specimen-meta-row {
+          display: flex; align-items: baseline; justify-content: space-between;
+          gap: 1rem;
+        }
+        .specimen-meta-label {
+          font-size: 0.58rem; letter-spacing: 0.28em;
+          text-transform: uppercase; color: rgba(255,255,255,0.32);
+        }
+        .specimen-meta-value {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 0.78rem; letter-spacing: -0.01em;
+          color: rgba(255,255,255,0.82);
+          font-variant-numeric: tabular-nums;
+        }
+
+        .specimen-footer {
+          padding: 0.875rem 1.5rem;
+          border-top: 1px solid rgba(255,255,255,0.06);
+          display: flex; align-items: center; justify-content: space-between;
+          background: rgba(99,102,241,0.04);
+          text-decoration: none;
+          transition: background 0.2s;
+        }
+        .specimen-footer:hover { background: rgba(99,102,241,0.1); }
+        .specimen-cta {
+          display: inline-flex; align-items: center; gap: 0.35rem;
+          font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+          color: #fff; font-weight: 600;
+          padding: 0.28rem 0.7rem;
+          border: 1px solid rgba(99,102,241,0.6);
+          background: rgba(99,102,241,0.15);
+          border-radius: 1px;
+          transition: all 0.2s;
+        }
+        .specimen-footer:hover .specimen-cta {
+          background: #6366f1;
+          border-color: #6366f1;
+          box-shadow: 0 0 24px rgba(99,102,241,0.4);
+        }
+
+        .specimen-caption {
+          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 0.875rem;
+          font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+          color: rgba(255,255,255,0.2);
+          padding: 0 0.25rem;
+        }
+       
+    at style
+    at div
+    at SpecimenCard
+    at div
+    at section
+    at div
+    at div
+    at HomePage (webpack-internal:///(app-pages-browser)/./src/app/page.tsx:95:66)
+    at ClientPageRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/client-page.js:14:11)
+    at InnerLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:243:11)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at LoadingBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:349:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at InnerScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:153:9)
+    at ScrollAndFocusHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:228:11)
+    at RenderFromTemplateContext (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/render-from-template-context.js:16:44)
+    at OuterLayoutRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/layout-router.js:370:11)
+    at ThemeProvider (webpack-internal:///(app-pages-browser)/./src/components/ThemeProvider.tsx:23:11)
+    at body
+    at html
+    at RootLayout (Server)
+    at RedirectErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:74:9)
+    at RedirectBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/redirect-boundary.js:82:11)
+    at NotFoundErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:76:9)
+    at NotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/not-found-boundary.js:84:11)
+    at DevRootNotFoundBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/dev-root-not-found-boundary.js:33:11)
+    at ReactDevOverlay (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/ReactDevOverlay.js:87:9)
+    at HotReload (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:321:11)
+    at Router (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:207:11)
+    at ErrorBoundaryHandler (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:113:9)
+    at ErrorBoundary (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/error-boundary.js:160:11)
+    at AppRouter (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/app-router.js:585:13)
+    at ServerRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:112:27)
+    at Root (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:117:11) @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  267607ms] [ERROR] Warning: An error occurred during hydration. The server HTML was replaced with client content in <%s>. #document @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/app-index.js:32
+[  267675ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267675ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267676ms] Error: Text content does not match server-rendered HTML.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at checkForUnmatchedText (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:32797:11)
+    at diffHydratedProperties (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:35055:9)
+    at hydrateInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:36127:3)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7246:3)
+    at completeWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:19769:13)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25963:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25759:5)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267676ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267677ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267677ms] Error: Hydration failed because the initial UI does not match what was rendered on the server.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:6981:9)
+    at tryToClaimNextHydratableInstance (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:7016:7)
+    at updateHostComponent$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16621:5)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18503:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25734:5)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25690:9)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24504:38)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267678ms] Error: There was an error while hydrating. Because the error happened outside of a Suspense boundary, the entire root will switch to client rendering.
+See more info here: https://nextjs.org/docs/messages/react-hydration-error
+    at updateHostRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:16571:57)
+    at beginWork$1 (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:18486:14)
+    at beginWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:26927:14)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25748:12)
+    at workLoopSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25464:5)
+    at renderRootSync (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:25419:7)
+    at recoverFromConcurrentError (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24597:20)
+    at performConcurrentWorkOnRoot (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom.development.js:24542:26)
+    at workLoop (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:256:34)
+    at flushWork (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:225:14)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:534:21)
+[  267737ms] [WARNING] Image with src "/logo.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
